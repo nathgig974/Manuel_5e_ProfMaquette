@@ -1,0 +1,451 @@
+\graphicspath{{../../S08_Somme_des_angles_d_un_triangle/Images/}}
+
+\themeG
+\chapter{Somme des angles d'un triangle}
+\label{S08}
+
+\programme%
+   {\item Somme des angles d'un triangle.}
+   {\item Mener des raisonnements et s'initier à la démonstration en utilisant les propriétés d'une figure.}
+
+\vfill
+
+\begin{debat}{Débat : géométrie euclidienne VS géométrie sphérique}
+   \og Un ours part de sa caverne et parcourt \Lg[km]{10} vers le sud, puis \Lg[km]{10} vers l'est et enfin \Lg[km]{10} vers le nord. Il se retrouve alors juste devant l'entrée de sa caverne. Quelle est la couleur de l'ours ? \fg \par
+   La {\bf géométrie sphérique} n'a pas les même propriétés que la {\bf géométrie euclidienne} utilisée au collège et au lycée. Cette dernière est la géométrie initiée par {\it Euclide}, mathématicien grec né vers 330 av. J.-C., il est connu pour avoir recensé une grande partie des mathématiques de l'époque dans ses {\it Éléments} : une série de treize livres utilisée pendant près de 2\,000 ans qui fut l'ouvrage le plus édité au monde après la Bible.
+   \tcblower
+      \begin{minipage}{5cm}
+         \begin{pspicture}(-1,-1)(4,3)
+            \pspolygon[linecolor=DodgerBlue](1,0)(4,0)(3,3.25)
+         \end{pspicture}
+      \end{minipage}
+      \begin{minipage}{5cm}
+         \flushright Un triangle \og sphérique \fg{} $\Longrightarrow$ \par
+         \flushleft $\Longleftarrow$ Un triangle \og plat \fg \par    
+      \end{minipage}
+      \begin{minipage}{5cm}
+         \Reperage[Espace,Sphere,EchelleEspace=60,AnglePhi=30,CouleurG=Crimson]{70/90/A,0/90/B}
+      \end{minipage} 
+\end{debat}
+
+\hfill {\gray Vidéo : \href{https://www.youtube.com/watch?v=7CZrbIkWUc4&embeds_referring_euri=https%3A%2F%2Fwww.arieka.fr%2F&source_ve_path=Mjg2NjY&feature=emb_logo}{\bf Calculer la mesure du troisième angle d'un triangle}, chaîne YouTube {\it Rapémathiques} d'{\it A'Rieka}.}
+
+
+%%% Approche %%%
+\begin{Maquette}[Cours]{Theme={Activité d'approche},Couleur={SteelBlue}}
+
+   \AAtitre{Des angles mouvants}
+
+      {\it Objectifs : faire découvrir la propriété de la somme des angles d'un triangle.}
+
+      \begin{AActivite}
+
+         \AApartie{Construction du triangle}
+
+            \begin{enumerate}
+               \item Sur une feuille, tracer un triangle ABC quelconque puis le découper.
+               \item Colorier les trois angles de trois couleurs différentes des deux côtés du triangle (une couleur par angle). \par
+                  {\psset{unit=1.2}
+                  \begin{pspicture}(-2,0.2)(10,5.8)
+                     \rput(8.3,4.8){$\leftarrow$ colorier des deux côtés}
+                     \psline[linestyle=dashed](6,5)(6,1)(6.3,1)
+                     \psframe(6,1)(6.25,1.25)
+                     \pswedge[fillstyle=solid,fillcolor=Crimson,linecolor=Crimson](1,1){1}{0}{38.5}
+                     \pswedge[fillstyle=solid,fillcolor=DodgerBlue,linecolor=DodgerBlue](6,5){1}{218.8}{306.8}
+                     \pswedge[fillstyle=solid,fillcolor=DarkOrange,linecolor=DarkOrange](9,1){1}{127}{180}
+                     \pspolygon(1,1)(9,1)(6,5)
+                     \rput(0.7,1){B}
+                     \rput(9.3,1){C}
+                     \rput(6,5.3){A}
+                     \rput(6,0.7){H}     
+                  \end{pspicture}}
+               \item Tracer la hauteur issue du sommet A et nommer le pied de cette hauteur H.
+               \item Plier le triangle ABC de manière à placer le point A sur le point H.
+               \item Plier le triangle ABC de manière à placer le point B sur le point H.
+               \item Plier le triangle ABC de manière à placer le point C sur le point H.
+            \end{enumerate}
+
+         \AApartie{Observations}
+            \begin{enumerate}[resume]
+               \item Que forment les trois angles obtenus en H ? \par
+                  \pointilles
+               \item Formuler cette observation en utilisant les angles $\widehat{\text A}, \widehat{\text B}$ et $\widehat{\text C}$. \par
+                  \pointilles
+               \item Formuler cette observation par une phrase simple et générale sans utiliser le nom des angles. \par
+                  \pointilles \par
+                  \pointilles
+            \end{enumerate}
+
+      \end{AActivite}
+
+\end{Maquette}
+
+
+%%%Trace écrite %%%
+\begin{Maquette}[Cours]{Theme={Trace écrite},Couleur={0.4[SteelBlue,Black]}}
+
+   %%%1
+   \section{Somme des angles dans un triangle}
+
+      \begin{propriete*}{}
+         Dans un triangle, la somme de la mesure de ses trois angles est égale à \ang{180}.
+      \end{propriete*}
+
+      Par conséquent, pour qu'un triangle soit constructible, il est nécessaire que la somme de ses angles fasse \ang{180}.
+         
+      \begin{center}
+         {\psset{unit=1}
+         \begin{pspicture}(-1,0.5)(9,5)
+            \pswedge[fillstyle=solid,fillcolor=Crimson,linecolor=Crimson](1,1){1}{0}{38.5}
+            \pswedge[fillstyle=solid,fillcolor=DodgerBlue,linecolor=DodgerBlue](6,5){1}{218.8}{306.8}
+            \pswedge[fillstyle=solid,fillcolor=DarkOrange,linecolor=DarkOrange](9,1){1}{127}{180}
+            \pspolygon(1,1)(9,1)(6,5)
+            \rput(0.7,1){B}
+            \rput(9.3,1){C}
+            \rput(6,5.3){A} 
+            \rput(5.5,2.5){$\widehat{A}+\widehat{B}+\widehat{C} =\ang{180}$}
+            \pswedge[fillstyle=solid,fillcolor=Crimson,linecolor=Crimson](0,3){1}{141}{180}
+            \pswedge[fillstyle=solid,fillcolor=DodgerBlue,linecolor=DodgerBlue](0,3){1}{53}{141}
+            \pswedge[fillstyle=solid,fillcolor=DarkOrange,linecolor=DarkOrange](0,3){1}{0}{53}
+            \rput(-0.7,3.2){\white B}
+            \rput(-0.1,3.6){\white A}
+            \rput(0.6,3.3){\white C}
+         \end{pspicture}}
+      \end{center}
+
+      \begin{exemple*}{}
+         \begin{minipage}{7cm}
+            \SommeAngles[FigureSeule,Rectangle,Echelle=10mm]{CBA}{}{55} \par
+            Quelle est la mesure de l'angle $\widehat{BCA}$ ?
+         \end{minipage}
+         \qquad
+         \begin{minipage}{9cm}
+            D'après le codage, l'angle $\widehat{ABC}$ est droit, donc $\widehat{ABC} =\ang{90}$.
+            \SommeAngles[Perso]{CBA}{90}{55}
+         \end{minipage}
+      \end{exemple*}
+
+
+   %%%2
+   \section{Triangles particuliers}
+
+      \begin{pspicture}(-1,-3.5)(4,2.5)
+         \pstTriangle[PointSymbol=none](0,0){E}(4,0){C}(0,2){R}
+         \psset{fillstyle=solid}
+         \pstRightAngle[fillcolor=Crimson,linecolor=Crimson]{R}{E}{C}
+         \pstMarkAngle[fillcolor=DodgerBlue,linecolor=DodgerBlue]{R}{C}{E}{}
+         \pstMarkAngle[fillcolor=DarkOrange,linecolor=DarkOrange]{E}{R}{C}{}
+         \rput(2,-1.5){\parbox{4cm}{\quad {\bf Triangle rectangle} \par \medskip La somme des deux angles aigus est égale à \ang{90}.}}
+      \end{pspicture}
+      \begin{pspicture}(-2.5,-2.5)(4,3)
+         \pstTriangle[PointSymbol=none](0,1){I}(4,1){O}(2,2.5){S}
+         \pstSegmentMark[SegmentSymbol=MarkHashh,MarkAngle=90]{I}{S} 
+         \pstSegmentMark[SegmentSymbol=MarkHashh,MarkAngle=90]{S}{O}
+         \pstLineAB{I}{O}
+         \psset{linecolor=DodgerBlue,fillstyle=solid,fillcolor=DodgerBlue}
+         \pstMarkAngle{S}{O}{I}{}
+         \pstMarkAngle{O}{I}{S}{}
+         \rput(2,-1){\parbox{6cm}{\qquad {\bf Triangle isocèle} \par \medskip Les angles de la base ont la même mesure. \par Si le triangle est isocèle et rectangle, les angles de la base mesurent \ang{45}.}}
+      \end{pspicture}
+      \begin{pspicture}(-2.5,-3.5)(3,3)
+         \pstTriangle[PointSymbol=none](0,0){E}(3,0){I}(1.5,2.55){Q}
+         \psset{SegmentSymbol=MarkHash,MarkAngle=90}
+         \pstSegmentMark{E}{Q} 
+         \pstSegmentMark{I}{Q}
+         \pstSegmentMark{I}{E}
+         \psset{linecolor=DarkOrange,fillstyle=solid,fillcolor=DarkOrange,LabelSep=.75}
+         \pstMarkAngle{Q}{I}{E}{\small \ang{60}}
+         \pstMarkAngle{I}{E}{Q}{\small \ang{60}}
+         \pstMarkAngle{E}{Q}{I}{\small \ang{60}}
+         \rput(1.5,-1.5){\parbox{3cm}{{\bf Triangle équilatéral} \par \medskip Tous les angles mesurent \ang{60}.}}
+      \end{pspicture}
+
+\end{Maquette}
+
+
+%%% Exercices %%%
+\begin{Maquette}[Fiche,CorrigeFin,Colonnes=2]{}
+
+   \begin{multicols}{2}
+
+      \begin{exercice}[SLF] %1
+         Pour chaque cas, calculer la mesure de l'angle manquant dans le triangle $RIM$.
+         \begin{center}
+            \hautab{1.25}
+            \begin{tabular}{|*{3}{C{2}|}}
+               \hline
+               $\widehat{RIM}$ & $\widehat{IMR}$ & $\widehat{MRI}$ \\
+               \hline
+               \ang{124} & \ang{18} & \\
+               \hline
+               \ang{71} & & \ang{29} \\
+               \hline
+               & \ang{98,1} & \ang{59,6} \\
+               \hline
+               \ang{49,5} & & \ang{113} \\
+               \hline
+            \end{tabular}
+         \end{center}
+      \end{exercice}
+      
+      \begin{Solution}
+         Pour chaque cas, la somme doit être égale à \ang{180}. \par
+         {\hautab{1.5}
+         \begin{tabular}{|*{3}{C{2}|}}
+            \hline
+            $\widehat{RIM}$ & $\widehat{IMR}$ & $\widehat{MRI}$ \\
+            \hline
+            \ang{124} & \ang{18} & \textcolor{RoyalBlue}{\ang{38}} \\
+            \hline
+            \ang{71} & \textcolor{RoyalBlue}{\ang{80}} & \ang{29} \\
+            \hline
+            \textcolor{RoyalBlue}{\ang{22,3}} & \ang{98,1} & \ang{59,6} \\
+            \hline
+            \ang{49,5} & \textcolor{RoyalBlue}{\ang{17,5}} & \ang{113} \\
+            \hline
+         \end{tabular}}
+      \end{Solution}
+      
+      
+      \begin{exercice} %2
+         Les figures suivantes ne sont pas en vraie grandeur. Pour chacune d'elles, indiquer si elles sont constructibles ou non en justifiant la réponse. \\
+         {\psset{unit=0.85}
+         \small
+         \begin{pspicture}(-0.5,0)(4,3.5)
+            \pstTriangle[PointSymbol=none](0,0){A}(3,0){B}(2,3){C}
+            \psset{LabelSep=.8}
+            \pstMarkAngle{B}{A}{C}{\ang{70}}
+            \pstMarkAngle{C}{B}{A}{\ang{75}} 
+            \pstMarkAngle{A}{C}{B}{\ang{40}} 
+         \end{pspicture}
+         \begin{pspicture}(-0.5,-0.5)(4,3.5)
+            \pstTriangle[PointSymbol=none](0,2){F}(3.5,2){U}(2.2,0){O}
+            \psset{LabelSep=.85}
+            \pstMarkAngle{O}{F}{U}{\ang{10}}
+            \pstMarkAngle{U}{O}{F}{\ang{95}} 
+            \pstMarkAngle{F}{U}{O}{\ang{85}} 
+         \end{pspicture} \par
+         \begin{pspicture}(-1,-0.5)(4,4)
+            \pstTriangle[PointSymbol=none](0,2){B}(0,0){O}(3,0){F}
+            \pstMarkAngle{O}{B}{F}{\ang{57,3}}
+            \pstMarkAngle[LabelSep=1.2]{B}{F}{O}{\ang{32,7}} 
+            \pstRightAngle{F}{O}{B}
+         \end{pspicture}
+         \begin{pspicture}(-0.5,-0.5)(3.5,3.5)
+            \pstTriangle[PointSymbol=none](1,0){P}(0,3){I}(3,2){C}
+            \pstMarkAngle{P}{I}{C}{\ang{35,1}}
+            \pstMarkAngle[LabelSep=0.9]{C}{P}{I}{\ang{72,4}}
+            \psset{SegmentSymbol=MarkHashh,MarkAngle=90}
+            \pstSegmentMark{P}{I}
+            \pstSegmentMark{I}{C}
+         \end{pspicture}}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{itemize}
+            \item Dans le triangle $BAC$ : \\
+               $\ang{40}+\ang{70}+\ang{75} =\ang{185} \neq \ang{180}$. \par
+               \cor{Le triangle $BAC$ n'est pas constructible}.
+            \item Dans le triangle $FOU$ : \\
+               $\ang{10}+\ang{95}+\ang{85} =\ang{190} \neq \ang{180}$. \par
+               \cor{Le triangle $FOU$ n'est pas constructible}.
+            \item Dans le triangle $BOF$ : \\
+               $\ang{57,3}+\ang{32,7}+\ang{90} =\ang{180}$. \par
+               \cor{Le triangle $BOF$ est constructible}.
+            \item Dans le triangle $PIC$ : \\
+               $\ang{35,1}+\ang{72,4}+\ang{72,4} =\ang{179,9} \neq \ang{180}$. \par
+               \cor{Le triangle $PIC$ n'est pas constructible}.
+         \end{itemize}
+      \end{Solution}
+      
+      
+      \begin{exercice} %3
+         Calculer, pour chaque triangle, la mesure de l'angle marqué d'un point d'interrogation. \par
+         {\psset{unit=0.85}
+         \small
+         \begin{pspicture}(-1,0)(3.5,3.7)
+            \pstTriangle[PointSymbol=none](0,0){R}(3,0){E}(1.5,2.6){P}
+            \psset{SegmentSymbol=MarkHash,MarkAngle=90,LabelSep=0.8}
+            \pstSegmentMark{R}{E}
+            \pstSegmentMark{R}{P}
+            \pstSegmentMark{P}{E}
+            \pstMarkAngle{P}{E}{R}{?} 
+         \end{pspicture}
+         \begin{pspicture}(0,-0.5)(4,3.2)
+            \pstTriangle[PointSymbol=none](0,2.3){R}(4,2.3){P}(2,0.3){A}
+            \psset{SegmentSymbol=MarkHashh,MarkAngle=90}
+            \pstSegmentMark{R}{A}
+            \pstSegmentMark{P}{A}
+            \pstMarkAngle[LabelSep=0.75]{P}{A}{R}{?} 
+            \pstMarkAngle[LabelSep=0.9]{A}{R}{P}{\ang{38}}
+         \end{pspicture} \par  
+         \begin{pspicture}(-1,-0.5)(3.5,3.3)
+            \pstTriangle[PointSymbol=none](0,2){Y}(0,0){E}(3,0){S}
+            \pstMarkAngle[LabelSep=1.1]{E}{Y}{S}{\small \ang{50,36}}
+            \pstRightAngle{S}{E}{Y}
+            \pstMarkAngle[LabelSep=0.8]{Y}{S}{E}{?}
+         \end{pspicture}
+         \begin{pspicture}(-1,-0.5)(3.5,3.8)
+            \pstTriangle[PointSymbol=none](1,0){H}(0,3){W}(3,2){Y}
+            \pstMarkAngle{H}{W}{Y}{\ang{42,6}}
+            \psset{SegmentSymbol=MarkHashh,MarkAngle=90}
+            \pstSegmentMark{W}{H}
+            \pstSegmentMark{W}{Y}
+            \pstMarkAngle[LabelSep=0.8]{Y}{H}{W}{?}
+         \end{pspicture}}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{itemize}
+            \item Le triangle $REP$ est équilatéral donc, tous ses angles ont la même mesure. La somme faisant \ang{180}, un angle mesure $\ang{180}\div3 =\ang{60}$. \par
+               Conclusion : \cor{$\widehat{REP} =\ang{60}$}.
+            \item Le triangle $RAP$ est isocèle en $A$ dont les angles à sa base principale mesurent \ang{38}. \par
+            $\ang{38}+\ang{38} =\ang{76}$ d'où $\widehat{RAP} =\ang{180}-\ang{76} =\ang{104}$. \par
+            Conclusion : \cor{$\widehat{RAP} =\ang{104}$}. 
+            \item Le triangle $YES$ est rectangle en $E$ et $\ang{90}+\ang{50,36} =\ang{140,36}$ d'où, $\widehat{ESY} =\ang{180}-\ang{140,36} =\ang{39,64}$. \par
+               Conclusion : \cor{$\widehat{ESY} =\ang{39,64}$}. 
+            \item Le triangle $WHY$ est isocèle en $W$ dont l'angle à son sommet principal vaut \ang{42,6}. \par
+               $\ang{180}-\ang{42,6} =\ang{137,4}$ ; $\widehat{WHY} =\ang{137,4}\div2 =\ang{68,7}$. \par
+               Conclusion : \cor{$\widehat{WHY} =\ang{68,7}$}.
+         \end{itemize}
+      \end{Solution}
+      
+      
+      \begin{exercice}[Dur] %4
+         On considère le polygone croisé $ITZEL$ suivant : \par
+         \begin{pspicture}(-0.5,0)(8,5)
+            \pstGeonode[CurveType=polygon,PointSymbol=none,PosAngle={90,225,45,-45}](1.9,3.9){T}(0.5,1){I}(7,4){L}(5.2,0.9){E}
+            \pstGeonode[PointSymbol=none,PosAngle=90](3.55,2.4){Z}
+            \pstSegmentMark{E}{L}
+            \pstSegmentMark{Z}{L}
+            \pstMarkAngle{L}{I}{T}{\ang{38}}
+            \pstMarkAngle{I}{L}{E}{\ang{38}}
+         \end{pspicture}
+         \begin{enumerate}
+            \item Démontrer que les droites $(TI)$ et $(LE)$ sont parallèles entre elles.
+            \item Démontrer que les angles $\widehat{LEZ}$ et $\widehat{LZE}$ ont la même mesure. La calculer.
+            \item Quelle est la nature du triangle $ZTI$ ? Justifier.
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}
+            \item Les angles $\widehat{TIZ} =\widehat{TIL}$ et $\widehat{ZLE} =\widehat{ILE}$ sont alternes-internes et de même mesure, \ang{38} donc : \par
+               \cor{les droites $(TI)$ et $(LE)$ sont parallèles entre elles}.      
+            \item Le triangle $ZEL$ est isocèle en $L$, les angles à sa base principale sont donc égaux d'où : \cor{$\widehat{LEZ} =\widehat{LZE}$}. \par
+               On calcule leur mesure : \par
+               $\ang{180}-\ang{38} =\ang{142}$ et $\ang{142}\div2 =\ang{71}$. \par
+               D'où \cor{$\widehat{LEZ} =\widehat{LZE} =\ang{71}$}.
+            \item Les angles $\widehat{EZL}$ et $\widehat{TZI}$ sont opposés par le sommet $Z$, donc ils sont égaux. \par
+               On a alors $\widehat{ZTI} =\ang{71}$. \\
+               Les angles $\widehat{ITZ} =\widehat{ITE}$ et $\widehat{LEZ}=\widehat{LET}$ sont alternes-internes et les droites $(TI)$ et $(LE)$ sont parallèles entre elles. Les mesures des angles sont donc égales soit : $\widehat{ITZ} =\widehat{ZEL} =\ang{71}$. \par
+              Conclusion : \cor{le triangle $ZTI$ est isocèle en $I$}.
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice} %5
+         Dans la figure ci-dessous, les points $A, R, I$ et $E$ sont alignés. Des mesures d'angle sont indiquées. \par
+         Vrai ou faux : le triangle $MAE$ est rectangle en $M$.
+         \begin{center}
+            {\psset{unit=0.75}
+            \small
+            \begin{pspicture}(-0.5,-0.5)(9.4,4.2)
+               \psline[linestyle=dashed](4,0)(2,3.46)(0,0)
+               \psline[linestyle=dashed](9.4,0)(2,3.46)(6.1,0)
+               \psline(10,0)(-1,0)
+               \rput(0,-0.3){$A$}
+               \rput(4,-0.3){$R$}
+               \rput(2,3.9){$M$}
+               \rput(6.2,-0.3){$I$}
+               \rput(9.5,-0.3){$E$}
+               \psarc(0,0){0.5}{60}{180}
+               \psarc(4,0){0.6}{120}{180}
+               \psarc(6.1,0){0.7}{140}{180}
+               \psarc(9.4,0){0.8}{155}{180}
+               \rput(5.1,0.3){\ang{40}}
+               \rput(8,0.25){\ang{25}}
+               \rput(-0.6,0.8){\ang{120}}
+               \rput(3.1,0.4){\ang{60}}
+            \end{pspicture}}
+         \end{center}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{itemize}
+            \item L'angle $\widehat{MAR}$ est supplémentaire à l'angle de mesure \ang{120}, donc il mesure $\ang{180}-\ang{120} =\ang{60}$.
+            \item Dans le triangle $MAE$ : \par
+               $\widehat{MAE}+\widehat{AEM} = \ang{60}+\ang{25} =\ang{85}$ soit : \par
+               $\widehat{AME} =\ang{180}-\ang{85} =\ang{95} \neq\ang{90}$. \par
+               Donc, \cor{le triangle $MAE$ n'est pas rectangle en $m$}.
+         \end{itemize}
+      \end{Solution}
+      
+      
+      \begin{exercice}[SLF] %6
+         Sachant que les droites $(EL)$ et $(NA)$ sont parallèles, calculer la mesure de chacun des angles du quadrilatère $NELA$ en justifiant oralement et inscrite la valeur de ces angles sur le dessin. \par
+         {\psset{unit=0.9}
+         \small
+         \begin{pspicture}(-3,-0.5)(5,5)
+            \pstGeonode[CurveType=polygon,PointSymbol=none,PosAngle={90,-90,-45}](3,4){Y}(0,0){N}(5,0){A}
+            \pstGeonode[PointSymbol=none,PosAngle={0,180}](4,2){L}(1.48,2){E}
+            \pstLineAB{E}{L}
+            \pstMarkAngle[LabelSep=0.8]{E}{Y}{L}{\ang{64}}
+            \psline(-2,0)(0,0)
+            \rput(-1.8,0.3){$x$}
+            \psarc(0,0){0.3}{53}{180}
+            \rput(-0.2,0.6){\ang{127}}
+         \end{pspicture}}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{itemize}
+            \item L'angle $\widehat{ENA}$ est le supplémentaire de l'angle $\widehat{xNE}$ de mesure $\ang{127}$, donc il mesure $\ang{180}-\ang{127} =\ang{53}$. \par
+               \cor{$\widehat{ENA} =\ang{53}$}.
+            \item Les angles $\widehat{xNE}$ et $\widehat{NEL}$ sont alternes-internes et les droites $(EL)$ et $(NA)$ sont parallèles donc, ces deux angles sont égaux. \cor{$\widehat{NEL} =\ang{127}$}.
+            \item Les angles $\widehat{ENA}$ et $\widehat{YEL}$ sont correspondants et les droites $(EL)$ et $(NA)$ sont parallèles, ils sont donc égaux. \par
+               $\widehat{LEY} =\ang{53}$. \par
+               Dans le triangle $ELY$ : \par
+               $\widehat{LEY}+\widehat{LYE}+\widehat{ELY} =\ang{180}$. \par
+               $\ang{53}+\ang{64}+\widehat{ELY} =\ang{180}$ soit $\widehat{ELY} =\ang{180}-\ang{53}-\ang{64} =\ang{63}$. \par
+               Les angles $\widehat{ELY}$ et $\widehat{ELA}$ sont supplémentaires donc, \par
+               $\widehat{ELA} =\ang{180}-\ang{63} =\ang{117}$. \cor{$\widehat{ELA} =\ang{117}$}.
+            \item Les angles $\widehat{ELY}$ et $\widehat{NAL}$ sont correspondants et les droites $(EL)$ et $(NA)$ sont parallèles donc, ces deux angles sont égaux. \cor{$\widehat{NAL} =\ang{63}$}.
+         \end{itemize}
+      \end{Solution}
+
+   \end{multicols}
+
+\end{Maquette}
+
+
+%%% Récré %%%
+\begin{Maquette}[Cours]{Theme={Activité récréative},Couleur={IndianRed}}
+    
+   \ARtitre{Le triangle de Penrose}
+
+      \ARpartie{Le triangle de Penrose, kesako ?}
+
+         Le {\bf triangle de Penrose}, aussi appelé tripoutre ou tribarre est un triangle impossible à construire physiquement en 3D mais facilement modélisable en 2D. Il a été conçu par le physicien et mathématicien britannique {\it Roger Penrose} (né à Colchester en 1931) dans les années 1950.
+         \begin{enumerate}
+            \item Observer le triangle de Penrose et en particulier ses angles sur ce quadrillage à maille triangulaire (aussi appelé isométrique en raison de l'égalité de longueur de tous ses côtés). Pourquoi est-il impossible à construire ?
+            \item Le reproduire sur le quadrillage juste à droite puis le colorier.
+         \end{enumerate}
+         \begin{pspicture}(0,-0.5)(17,8.3)
+            \rput(8.5,4){\Papiers[Triangle,Largeur=17,Hauteur=8,Couleur=Gray]}
+            \pspolygon[fillstyle=solid,fillcolor=darkgray](1.5,0.87)(7.5,0.87)(8,1.73)(3,1.73)(4.5,4.33)(4,5.20)
+            \pspolygon[fillstyle=solid,fillcolor=darkgray!70](1.5,0.87)(1,1.73)(4,6.93)(6.5,2.60)(5.5,2.60)(4,5.20)
+            \pspolygon[fillstyle=solid,fillcolor=darkgray!40](3,1.73)(8,1.73)(5,6.93)(4,6.93)(6.5,2.60)(3.5,2.60)
+         \end{pspicture}
+
+      \ARpartie{Et dans la vraie vie ?}
+
+         $\Rightarrow$ Le jeu {\bf Monument Valley} est un jeu de réflexion en perspective isométrique qui se passe dans un décor composé de structures aux formes géométriques impossibles basées sur ce triangle. \par
+         $\Rightarrow$ {\bf An impossible triangle sculpture in Perth} : in 1997, a new landmark has been created for Perth, in a unique collaboration between a leading WA artist Brian McKay and architect Ahmad Abas. Destined to become a bold icon for Perth, the \og Impossible Triangle \fg{} has been erected in Claisebrook Square, East Perth. The sculpture is 13.5 meters height and the design striations on the polished aluminium reflects both sunlight and artificial lighting. The view of the triangle depends on where it is observed from.
+         \begin{center}
+            \includegraphics[height=5.5cm]{Penrose1} \qquad \includegraphics[height=5.5cm]{Penrose2} \qquad \includegraphics[height=5.5cm]{Penrose3}
+         \end{center}
+
+         \vfill\hfill {\footnotesize\it Source : https://im-possible.info/english/}
+
+\end{Maquette}

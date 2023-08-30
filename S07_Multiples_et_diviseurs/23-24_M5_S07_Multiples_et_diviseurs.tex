@@ -1,0 +1,589 @@
+\themeN
+\chapter{Multiples et diviseurs}
+\label{S07}
+
+\programme%
+   {\item Multiples et diviseurs.
+    \item Critères de divisibilité par 2, 3, 5, 9.
+    \item Division euclidienne.}
+   {\item Déterminer si un entier est ou n'est pas multiple ou diviseur d'un autre entier.
+    \item Utiliser un critère de divisibilité par 2, 3, 5, 9, 10.
+    \item Modéliser et résoudre des problèmes mettant en jeu la divisibilité.}
+
+\vfill
+
+\begin{debat}{Débat : la division euclidienne}
+   Le nom de {\bf division euclidienne} est un hommage rendu à {\it Euclide} (300 av. J.-C.), mathématicien grec qui en explique le principe par soustractions successives dans son \oe uvre {\it Les éléments}. Mais elle apparaît très tôt dans l'histoire des mathématiques, par exemple dans les mathématiques égyptiennes, babyloniennes et chinoises.
+   \tcblower
+      \begin{pspicture}(0,1.25)(4,4.25)
+         \psline[linewidth=1mm](2,1)(2,4)
+         \psline[linewidth=1mm](2,3)(4,3)
+         \it\large
+         \rput(0.8,3.5){dividende}
+         \rput(3,3.5){diviseur}
+         \rput(3,2.5){quotient}
+         \rput(3,2){\small (euclidien)}
+         \rput(1,1.5){reste}
+      \end{pspicture}
+\end{debat}
+
+\hfill {\gray Vidéo : \href{https://www.youtube.com/watch?v=e-noKy-HD0Y&embeds_referring_euri=https%3A%2F%2Fwww.arieka.fr%2F&source_ve_path=Mjg2NjY&feature=emb_logo}{\bf Critères de divisibilité}, chaîne YouTube {\it Rapémathiques} d'{\it A'Rieka}.}
+
+
+%%% Approche %%%
+\begin{Maquette}[Cours]{Theme={Activité d'approche},Couleur={SteelBlue}}
+
+   \AAtitre{Les multiplications incomplètes}
+
+      {\it Objectifs : calculer mentalement des multiplications et des divisions ; résoudre un problème de calcul mental ; compléter un tableau à double entrée.}
+
+      \begin{AActivite}
+
+         Compléter ces tables de multiplication dont on a effacé le contenu de certaines cases. Les nombres sont tous strictement positifs, il ne peut pas y avoir deux fois le même nombre sur une même colonne ou une même ligne. \par
+         
+         {\hautab{1.5}
+         \AApartie{Piste verte} \medskip
+            \hskip10mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & & \\
+               \hline\hline
+               & & 24 \\
+               \hline
+               & 25 & 30 \\
+               \hline
+            \end{tabular}
+            \hskip10mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & & 7 \\
+               \hline\hline
+               & & 21 \\
+               \hline
+               4 & 8 & \\
+               \hline
+            \end{tabular}
+            \hskip10mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & 6 & \\
+               \hline\hline
+               & 24 & 32 \\
+               \hline
+               & 36 & \\
+               \hline
+            \end{tabular}
+            \hskip10mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & 3 & \\
+               \hline\hline
+               & & 18 \\
+               \hline
+               5 & & 45 \\
+               \hline
+            \end{tabular}
+               
+         \bigskip
+         \AApartie{Piste bleue} \medskip
+            \hskip10mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & 2 & & \\
+               \hline\hline
+               & & 9 & \\
+               \hline
+               & 8 & & \\
+               \hline
+               & 16 & & 56 \\
+               \hline
+            \end{tabular}
+            \hskip16mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & 2 & & \\
+               \hline\hline
+               4 & & 16 & \\
+               \hline
+               & & & 35 \\
+               \hline
+               & 18 & & 45 \\
+               \hline
+            \end{tabular}
+            \hskip16mm
+            \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+               \hline
+               {\Large $\times$} & & 7 & \\
+               \hline\hline
+               & 12 & & 32 \\
+               \hline
+               & & & 64 \\
+               \hline
+               & & 63 & 72 \\
+               \hline
+            \end{tabular}
+      
+      \bigskip
+      \AApartie{Piste rouge} \medskip
+         \hskip10mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & 3 & \\
+            \hline\hline
+            & 21 & & \\
+            \hline
+            & & 18 & \\
+            \hline
+            & & 6 & 4 \\
+            \hline
+         \end{tabular}
+         \hskip16mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & & 7 \\
+            \hline\hline
+            2 & & & \\
+            \hline
+            & 72 & 54 & \\
+            \hline
+            & 40 & & 35 \\
+            \hline
+         \end{tabular}
+         \hskip16mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & & \\
+            \hline\hline
+            & 18 & & 15 \\
+            \hline
+            & & 64 & \\
+            \hline
+            & & 32 & \\
+            \hline
+         \end{tabular}
+         
+      \bigskip
+      \AApartie{Piste noire} \medskip
+         \hskip10mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & & 10 \\
+            \hline\hline
+            & 20 & 8 & \\
+            \hline
+            & 35 & & 70 \\
+            \hline
+            & & & 100 \\
+            \hline
+         \end{tabular}
+         \hskip16mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & & \\
+            \hline\hline
+            & & 45 & \\
+            \hline
+            & 28 & & \\
+            \hline
+            & 44 & & 99 \\
+            \hline
+         \end{tabular}
+         \hskip16mm
+         \begin{tabular}{|C{0.5}||C{0.5}|C{0.5}|C{0.5}|}
+            \hline
+            {\Large $\times$} & & 13 & \\
+            \hline\hline
+            & & 65 & \\
+            \hline
+            & 42 & & 49 \\
+            \hline
+            & 72 & & 84 \\
+            \hline
+         \end{tabular}}
+
+      \end{AActivite}
+
+\end{Maquette}
+
+
+%%% Trace écrite %%%
+\begin{Maquette}[Cours]{Theme={Trace écrite},Couleur={0.4[SteelBlue,Black]}}
+
+   %%% 1
+   \section{Multiples et diviseurs}
+
+      \begin{minipage}{10cm}
+         {\it Rappel :} effectuer une division euclidienne d'un {\bf dividende} $a$ par un {\bf diviseur} $b$, c'est trouver deux entiers appelés {\bf quotient} $q$ et {\bf reste} $r$ tels que $a=b\times q+r$ où $r<b$. \par
+         Dans l'exemple ci-contre, on peut écrire : $123 =5\times24+3$.
+      \end{minipage}
+      \qquad
+      \begin{minipage}{5cm}
+         \begin{pspicture}(-0.5,-1)(4,4)
+            \rput(1,1.2){$\opidiv[displayintermediary=all,voperation=top]{123}{5}$}
+            \psline[linecolor=DodgerBlue]{->}(0.7,2.8)(0.7,2.4)
+            \rput(0.7,3){\textcolor{DodgerBlue}{dividende}}
+            \psline[linecolor=DodgerBlue]{<-}(1.9,2.3)(2.4,2.3)
+            \rput[l](2.5,2.3){\textcolor{DodgerBlue}{diviseur}}
+            \psline[linecolor=Crimson]{<-}(2.2,1.7)(2.7,1.7)
+            \rput[l](2.8,1.7){\textcolor{Crimson}{quotient}}
+            \psline[linecolor=Crimson]{<-}(1.4,0.2)(1.9,0.2)
+            \rput[l](2,0.2){\textcolor{Crimson}{reste}}
+         \end{pspicture}
+      \end{minipage}
+
+      \begin{definition*}{}
+         $a$ et $b$ sont deux nombres entiers. Lorsque le reste de la division de $a$ par $b$ est égal à 0, on dit que $a$ est un \textbf{multiple} de $b$, ou que $b$ est un \textbf{diviseur} de $a$, ou que $a$ est \textbf{divisible} par $b$.
+      \end{definition*}
+
+      \begin{exemple*}{}
+         \begin{itemize}
+            \item 15 est multiple de 3 car $15=3\times 5+\textcolor{DodgerBlue}{0}$, on peut aussi dire que 3 est un diviseur de 15, ou que 15 est divisible par 3.
+            \item 17 n'est pas un multiple de 3 car $17=3\times 5+\textcolor{DodgerBlue}{2}$.
+            \item Les diviseurs de 24 sont 1; 2; 3; 4; 6; 8; 12 et 24.
+            \item Il y a une infinité de multiples de 18, comme par exemple 18 ; 36 ; 54 ; 180\dots
+         \end{itemize}
+      \end{exemple*}
+
+   %%% 2
+   \section{Critères de divisibilité}
+   
+   \begin{propriete*}{}
+      \begin{itemize}
+         \item un nombre est divisible par 2 s'il se termine par 0 ; 2 ; 4 ; 6 ou 8 ;
+         \item un nombre est divisible par 5 s'il se termine par 0 ou 5 ;
+         \item un nombre est divisible par 10 s'il se termine par 0 ;
+         \item un nombre est divisible par 3 si la somme de ses chiffres est un multiple de 3 ;
+         \item un nombre est divisible par 9 si la somme de ses chiffres est un multiple de 9.
+      \end{itemize}
+   \end{propriete*}
+   
+   \begin{exemple*}{}   
+      \begin{itemize}
+         \item $2+5+2=9$ est multiple de 3 donc, 252 est divisible par 3. \par
+            $2+5+3=10$ n'est pas multiple de 3 donc, 253 n'est pas divisible par 3.
+         \item $5+2+3+6+2=18$ est multiple de 9 donc, 52\,362 est divisible par 9, et donc par 3. \par
+            $5+2+3+6+3=19$ n'est pas multiple de 9 donc, 52\,363 n'est pas divisible par 9.
+         \end{itemize}
+   \end{exemple*}
+   
+   Remarque : pour savoir si un nombre est divisible par 3, on peut calculer la somme des chiffres du nombre obtenu jusqu'à ce que l'on trouve un seul chiffre. \par
+      pour \num{563387981}, on calcule : $5+6+3+3+8+7+9+8+1=50$. \par
+      Puis on calcule $5+0=5$. 5 n'est pas divisible par 3 donc, \num{563387981} n'est pas divisible par 3.
+
+\end{Maquette}
+
+
+%% Exercices %%%%%%%
+\begin{Maquette}[Fiche,CorrigeFin,Colonnes=2]{}
+
+   \begin{multicols}{2}
+
+      \begin{exercice} %1
+         Effectuer les divisions euclidiennes suivantes : \par
+         307 par 7 \qquad et \qquad \num{13758} par 25.
+      \end{exercice} 
+
+      \begin{Solution}
+         \opidiv[displayintermediary=all,voperation=top]{307}{7} \hskip1.5cm \opidiv[displayintermediary=all,voperation=top]{13758}{25} \par \smallskip
+         \cor{$307 =7\times43+6$} \quad et \quad \cor{$13\,758 =25\times550+8$}.
+       \end{Solution}
+      
+
+      \begin{exercice} %2
+         Résoudre les problèmes suivants :
+         \begin{enumerate}
+            \item \num{6798} supporters d'un club de rugby doivent faire un déplacement en car pour soutenir leur équipe. Chaque car dispose de 55 places. \par
+               Combien de cars faut-il réserver ?
+            \item Des stylos sont conditionnés par boîte de 40. Imane a \num{2647} stylos. \par
+               Combien lui en manque-t-il pour avoir des boîtes entièrement remplies ?
+            \item Trois amis participent à une chasse au trésor et trouvent \num{1419} pièces en chocolat. \par
+               Si le partage est équitable, combien de pièces en chocolat auront-ils chacun ? \par
+               Julie arrive et leur rappelle que c'est elle qui leur a prêté sa boussole. Elle exige donc d'avoir la même part que chacun des trois autres plus les pièces restantes. Combien de pièces recevra-t-elle ?
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         On effectue les divisions suivantes : \par 
+         {\small \opidiv[displayintermediary=all,voperation=top]{6798}{55} \hfill \opidiv[displayintermediary=all,voperation=top]{2647}{40} \hfill \opidiv[displayintermediary=all,voperation=top]{1419}{3}}
+         \begin{enumerate}
+            \item En prenant 123 cars, il restera 33 personnes, il faudra donc réserver \cor{124 cars}.
+            \item Il lui reste 7 stylos pour une boite de 40, il faut donc ajouter \cor{33 stylos} pour compléter la boite.
+            \item Chaque ami aura donc \cor{473 pièces en chocolat}, il n'en restera pas. Lorsque Julie arrive, elle recevra $(354+3)$ pièces en chocolat, soit \cor{357}.
+         \end{enumerate}
+      \end{Solution}
+      
+  
+      \begin{exercice} %3
+         Trouver tous les diviseurs des nombres suivants :
+         \begin{colenumerate}
+            \item 14
+            \item 40
+            \item 48
+            \item \num{2037}
+         \end{colenumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item Diviseurs de 14 : \cor{1 ; 2 ; 7 ; 14}.
+            \item Diviseurs de 40 : \cor{1 ; 2 ; 4 ; 5 ; 8 ; 10 ; 20 ; 40}.
+            \item Diviseurs de 48 : \cor{1 ; 2 ; 3 ; 4 ; 6 ; 8 ; 12 ; 16 ; 24 ; 48}.
+            \item Diviseurs de 2\,037 : \cor{1 ; 3 ; 7 ; 21 ; 97 ; 291 ; 679 ; 2037}.
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice} %4
+         Écrire :
+         \begin{enumerate}
+            \item La liste des dix premiers multiples de 6.
+            \item Cinq multiples de 11.
+            \item Tous les multiples de 13 inférieurs à 80.
+            \item Le plus grand multiple de 12 inférieur à 75.
+            \item Le plus grand multiple de 36 inférieur à 100.
+            \item Le plus petit multiple de 9 supérieur à \num{1200}.
+            \item Le plus petit multiple de 14 supérieur à 710 ?
+            \item Le plus petit et le plus grand diviseur de 199.
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item Dix premiers multiples de 6 : \par
+               \cor{0 ; 6 ; 12 ; 18 ; 24 ; 30 ; 36 ; 42 ; 48 ; 54}.
+            \item Cinq multiples de 11 : \cor{0 ; 11 ; 22 ; 33 ; 44}.
+            \item Multiples de 13 inférieurs à 80 : \cor{0 ; 13 ; 26 ; 39 ; 52 ; 65 ; 78}
+            \item Plus grand multiple de 12 inférieur à 75 : \cor{72}.
+            \item Plus grand multiple de 36 inférieur à 100 : \cor{72}.
+            \item Plus petit multiple de 9 supérieur à 1\,200 : \cor{\num{1206}}.
+            \item Plus petit multiple de 14 supérieur à 710 : \cor{714}.
+            \item Plus grand/petit diviseur de 199 : \cor{1 et 199}.
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice}[Dur] %5
+         Je suis un nombre impair à deux chiffres sans 2 dans mon écriture. Je ne suis pas divisible par 5 mais je suis un multiple de 9. \par
+         Qui suis-je ? 
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{itemize}
+            \item On peut commencer par écrire la liste des multiples de 9 à deux chiffres : 18 ; 27 ; 36 ; 45 ; 54 ; 63 ; 72 ; 81 ; 90 ; 99.
+            \item On supprime ensuite les nombres pairs, il reste : \par
+               27 ; 45 ; 63 ; 81 ; 99.
+            \item On supprime 27 qui comporte un 2, il reste : 45 ; 63 ; 81 ; 99.
+            \item Enfin, on supprime 45 qui est divisible par 5. \par
+               Je peux donc être \cor{63, 81 ou 99}.
+         \end{itemize}
+      \end{Solution}
+      
+      
+      \begin{exercice} %6
+         Les nombres 30 ; 27 ; 246 ; 325 ; \num{4238} et \num{6139} sont-ils divisibles par 2 ? par 3 ? par 5 ? par 9 ?
+      \end{exercice}
+      \begin{Solution}
+         On résume les résultats dans un tableau : \par \smallskip
+         {\hautab{1}
+         \begin{tabular}{|*{7}{c|}}
+            \hline
+            & 30 & 27 & 246 & 325 & \num{4238} & \num{6139} \\
+            \hline
+            par 2 & \textcolor{RoyalBlue}{$\times$} & & \textcolor{RoyalBlue}{$\times$} & & \textcolor{RoyalBlue}{$\times$} & \\
+            \hline
+            par 3 & \textcolor{RoyalBlue}{$\times$} & \textcolor{RoyalBlue}{$\times$} & \textcolor{RoyalBlue}{$\times$} & & & \\
+            \hline
+            par 5 & \textcolor{RoyalBlue}{$\times$} & & & \textcolor{RoyalBlue}{$\times$} & & \\
+            \hline
+            par 9 & & \textcolor{RoyalBlue}{$\times$} & & & & \\
+            \hline
+         \end{tabular}}
+      \end{Solution}
+      
+      
+      \begin{exercice} %7
+         Relier les deux cases grisées en suivant un chemin constitué uniquement de multiples de 6. \par \smallskip
+         \LabyNombre[Nom=Ex7,Graine=1,Multiple=6,Couleur=LightGrey,Echelle=1.1]
+      \end{exercice}
+
+      \begin{Solution}
+         \smallskip
+         \LabyNombre[Nom=Ex7,Graine=1,Multiple=6,Couleur=LightGrey,Echelle=1,Solution,CouleurChemin=1.5RoyalBlue]
+      \end{Solution}
+      
+      
+      \begin{exercice} %8
+         Colorier un chemin qui permet de relier les deux cases grisées en suivant les lignes sachant que le nombre inscrit dans un carré vers lequel on se déplace doit être multiple du nombre inscrit dans le disque d’où l’on vient et que le nombre inscrit dans un disque vers lequel on se déplace doit être diviseur du nombre inscrit dans le carré d’où l’on vient. \par \medskip
+         \LabyNombre[Nom=Ex8,Graine=2,Multiplication,Multiple=6,Longueur=7,Largeur=5,Couleur=LightGrey,Echelle=0.6]
+      \end{exercice}
+
+      \begin{Solution}
+         \medskip
+         \LabyNombre[Nom=Ex8,Graine=2,Multiplication,Multiple=6,Longueur=7,Largeur=5,Couleur=LightGrey,Echelle=0.6,Solution]
+      \end{Solution}
+   
+      
+      \begin{exercice}[Dur] %9
+         Répondre par vrai ou faux en justifiant.
+         \begin{enumerate}
+            \item Tout nombre divisible par 3 est divisible par 9.
+            \item Tout nombre divisible par 9 est divisible par 3.
+            \item Tout nombre divisible par 2 et 3 est divisible par 5.
+            \item Tout nombre dont le chiffre des unités est 2 est divisible par 2. 
+            \item Tout nombre dont le chiffre des unités est 3 est divisible par 3.
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item \cor{faux}. Par exemple, 6 est divisible par 3 mais pas par 9.
+            \item \cor{vrai}. Un nombre divisible par 9 s'écrit $9k$ où $k$ est un entier. Or, $9k =3\times(3k)$ donc il est divisible par 3.
+            \item \cor{faux}. Par exemple, 6 est divisible par 2 et par 3 mais il n'est pas divisible par 5.
+            \item \cor{vrai}. Un nombre pair est divisible par 2.
+            \item \cor{faux}. Par exemple, 13 se termine par 3 mais n'est pas divisible par 3.
+         \end{enumerate}
+      \end{Solution}
+
+   \end{multicols}
+
+\end{Maquette}
+
+
+%%% Récré %%%
+\begin{Maquette}[Cours]{Theme={Activité récréative},Couleur={IndianRed}}
+    
+   \ARtitre{Shikaku}
+      Le {\bf Shikaku} est un casse-tête japonais. Son nom vient du Japonais et signifie \og diviser en carrés \fg. \\
+      Le but de ce jeu est de diviser une grille donnée en plusieurs rectangles. \medskip
+         
+      \ARpartie{Règle du jeu}
+         \begin{itemize}
+            \item Paver la grille à l'aide de rectangles.
+            \item Chaque rectangle doit contenir un nombre et un seul.
+            \item Le nombre contenu dans un rectangle indique combien de cases le constituent. \medskip
+         \end{itemize}
+   
+      \ARpartie{Exemple}
+         {\psset{unit=0.6,subgriddiv=0,gridlabels=0,gridwidth=0.15mm}
+          \footnotesize
+            \begin{tabular}{*{6}{C{2.5}}}
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1}           
+               \end{pspicture}
+               &
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1} 
+                 \psset{linewidth=0.6mm,linecolor=RoyalBlue}
+                  \psframe(2,0)(3,1)
+               \end{pspicture}
+               &
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1} 
+                  \psset{linewidth=0.6mm,linecolor=RoyalBlue}
+                  \psframe(2,0)(3,1)
+                  \psframe(0,3)(4,4)
+               \end{pspicture}
+               &
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1} 
+                  \psset{linewidth=0.6mm,linecolor=RoyalBlue}
+                  \psframe(2,0)(3,1)
+                  \psframe(0,3)(4,4)
+                  \psframe(3,0)(4,3)
+               \end{pspicture}
+               &
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1} 
+                  \psset{linewidth=0.6mm,linecolor=RoyalBlue}
+                  \psframe(2,0)(3,1)
+                  \psframe(0,3)(4,4)
+                  \psframe(3,0)(4,3)
+                  \psframe(0,1)(3,3)
+               \end{pspicture}
+               &
+               \begin{pspicture}(0,0)(4,4)
+                  \psgrid(0,0)(4,4)
+                  \rput(3.5,3.5){4}
+                  \rput(2.5,2.5){6} \rput(3.5,2.5){3} 
+                  \rput(0.5,0.5){2} \rput(2.5,0.5){1} 
+                  \psset{linewidth=0.6mm,linecolor=RoyalBlue}
+                  \psframe(2,0)(3,1)
+                  \psframe(0,3)(4,4)
+                  \psframe(3,0)(4,3)
+                  \psframe(0,1)(3,3)
+                  \psframe(0,0)(2,1)
+               \end{pspicture}
+               \\
+               grille d'origine
+               &
+               un rectangle à 1 case est forcément un carré de côté 1
+               &
+               un rectangle à 4 cases est un carré de côté 2 ou un rectangle de côtés 1 et 4
+               &
+               un rectangle à 3 cases est un rectangle de côtés 1 et 3
+               &
+               un rectangle à 6 cases est un rectangle de côtés 2 et 3 ou de côtés 1 et 6
+               &
+               un rectangle à 2 cases est un rectangle de côtés 1 et 2 \\
+            \end{tabular}} \smallskip
+   
+      \ARpartie{Let's go !!!}
+         \Shikaku[Taille=4,Largeur=5mm,Couleur=RoyalBlue]{%
+            /2,l/2,l/4,/,%1
+            b/,lb/,lb/,b/,%2
+            /2,lb/3,b/,b/,%3
+            /,l/,/,/3}%4
+         \hskip1cm
+         \Shikaku[Taille=5,Largeur=5mm,Couleur=RoyalBlue,Sotion]{%
+            /3,lb/,b/,b/4,b/,%1
+            /,lb/,b/2,l/,/,%2
+            b/,l/,l/,lb/4,b/,%3
+            /,lb/2,lb/2,lb/2,b/,%4
+            /2,l/,/4,/,/}%5
+         \hskip1cm
+         \Shikaku[Taille=6,Largeur=5mm,Couleur=RoyalBlue]{%
+            /4,l/5,l/,lb/,b/3,b/,%1
+            /,l/,l/3,l/,/,/,%2
+            /,l/,lb/,lb/6,b/,b/,%3
+            b/,l/,lb/,b/,b/4,b/,%4
+            /,lb/,lb/,b/2,lb/2,b/,%5
+            /2,l/,/5,/,/,/}%6
+
+         \vskip5mm
+
+         \Shikaku[Taille=7,Largeur=5mm,Couleur=RoyalBlue]{%
+            /,l/,/,/,l/,lb/,b/2,%1
+            /,lb/,b/,b/6,lb/2,l/2,l/2,%2
+            /,lb/2,b/,l/4,/,lb/,lb/,%3
+            /6,l/,l/3,lb/,b/,l/,/,%4
+            /,l/3,l/,l/,/,lb/4,b/,%5
+            b/,lb/,lb/,lb/4,b/,l/2,l/2,%6
+            /,/2,l/,/,/3,l/,l/}%7
+         \hskip1cm
+         \Shikaku[Taille=9,Largeur=5mm,Couleur=RoyalBlue]{%
+            b/2,b/,l/,/,/,l/,l/,l/,/,%1
+            /2,l/,lb/6,b/,b/,l/3,lb/2,lb/4,b/,%2
+            b/,l/,l/,lb/2,b/,lb/,l/,lb/2,b/,%3
+            /,l/,l/,l/2,lb/,b/2,l/,l/,/,%4
+            /5,l/,l/6,lb/,lb/,b/2,lb/3,lb/4,b/,%5
+            /,l/7,l/,l/3,l/,/,/,l/,/,%6
+            /,l/,l/,l/,l/,/,/,l/6,/,%7
+            b/,lb/,lb/,lb/,lb/9,b/,b/,lb/,b/,%8
+            /,/3,/,l/,/4,/,/,l/2,/}%9
+
+\end{Maquette}

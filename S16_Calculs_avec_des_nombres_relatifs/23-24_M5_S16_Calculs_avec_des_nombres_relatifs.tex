@@ -1,0 +1,536 @@
+\graphicspath{{../../S16_Calculs_avec_des_nombres_relatifs/Images/}}
+
+\themeN
+\chapter{Calculs avec des nombres relatifs}
+\label{S16}
+
+\programme%
+   {\item Somme et différence de nombres décimaux.}
+   {\item Calculer avec des nombres décimaux relatifs.}
+
+\vfill
+
+\begin{debat}{Débat : Brahmagupta et l'invention du 0}
+   {\bf Brahmagupta} est un mathématicien indien né en 598. Dans l'un de ses ouvrages, le {\it Brahma Sphuta Siddhanta}, il présente les règles d'arithmétique qui concernant les nombres positifs (qu'il appelle les biens) et les nombres négatifs (qu'il appelle les dettes) par des calculs de pertes et de profits. Il définit ainsi le zéro comme la différence d’un nombre par lui-même. Par exemple, voilà comment il exprime les opérations usuelles :
+   \begin{itemize}
+      \item zéro soustrait d’une dette est une dette ;
+      \item zéro soustrait d’un bien est un bien ;
+      \item zéro soustrait de zéro est zéro ;
+      \item une dette soustraite de zéro est un bien ;
+      \item un bien soustrait de zéro est une dette.
+   \end{itemize}
+   \tcblower
+      {\psset{unit=0.9}
+      \begin{pspicture}(0,0.5)(11,5.5)
+         \psset{fillstyle=solid}
+         \psellipse[fillcolor=Crimson!50](2,4.3)(1.3,0.8)
+         \rput(2,4.6){\it indien}
+         \rput(2,4){\bf sunya}
+         \psline{->}(3.5,4.3)(4.5,4.3)
+         \psellipse[fillcolor=Crimson!40](6,4.3)(1.3,0.8)
+         \rput(6,4.6){\it arabe}
+         \rput(6,4){\bf sifr}
+         \psline{->}(7.5,4.3)(9,3.9) %
+         \psellipse[fillcolor=Crimson!30](9.5,3)(1.3,0.8)
+         \rput(9.5,3.3){\it latin}
+         \rput(9.5,2.7){\bf zephirum}
+         \psline{->}(9,2.1)(7.5,1.7)
+         \psellipse[fillcolor=Crimson!20](6,1.7)(1.3,0.8)
+         \rput(6,2){\it italien}
+         \rput(6,1.4){\bf zephiro}
+         \psellipse[fillcolor=Crimson!10](2,1.7)(1.3,0.8)
+         \rput(2,2){\it français}
+         \rput(2,1.4){\bf zéro}
+         \psline{<-}(3.5,1.7)(4.5,1.7)    
+      \end{pspicture}}
+\end{debat}
+
+\hfill {\gray Vidéo : \href{https://www.youtube.com/watch?v=KuJERDWGMw0}{\bf Addition et soustraction de nombres relatifs}, site Internet {\it Rapémathiques}, d'A'Rieka.}
+
+
+%%% Approche %%%
+\begin{Maquette}[Cours]{Theme={Activité d'approche},Couleur={SteelBlue}}
+
+   \AAtitre{La pêche mystérieuse}
+
+      {\it Objectifs : effectuer des additions et des soustractions avec des nombres entiers relatifs.}
+
+      \begin{AActivite}
+
+         Sept amis jouent à la fête foraine au jeu de la pêche mystérieuse, ils gagnent ou il perdent des points selon les objets qu'ils \og pêchent \fg. Voilà les points qu'ils peuvent gagner : \par
+         \begin{pspicture}(0,1.5)(15,3.25)
+            \rput(2,2.25){\psscalebox{0.4}{\psBill}}
+            \rput(4,2.5){\it\textcolor{SteelBlue}{Billy}}
+            \rput(4,2){\it\textcolor{SteelBlue}{+150 points}}
+            \rput{-30}(6,2.4){\psscalebox{0.55}{\psBird}}
+            \rput(9.5,2.5){\it\textcolor{SteelBlue}{Birdy}}
+            \rput(9.5,2){\it\textcolor{SteelBlue}{+100 points}}
+            \rput(12.5,1.5){\psKangaroo[fillcolor=brown]{1.7}}
+            \rput(14.5,2.5){\it\textcolor{SteelBlue}{Skippy}}
+            \rput(14.5,2){\it\textcolor{SteelBlue}{+50 points}}
+         \end{pspicture}
+         
+         Cependant, certains objets font perdre des points : \par
+         \begin{pspicture}(0,1.5)(15,3.25)
+            \rput{-30}(2.2,2.25){\psscalebox{0.4}{\psAnt}}
+            \rput(4,2.5){\it\textcolor{SteelBlue}{Antas}}
+            \rput(4,2){\it\textcolor{SteelBlue}{-25 points}}
+            \rput(6.7,1.7){\psscalebox{0.25}{\psFish[fillstyle=slope]}}         
+            \rput(9.5,2.5){\it\textcolor{SteelBlue}{Fishas}}
+            \rput(9.5,2){\it\textcolor{SteelBlue}{-75 points}}
+            \rput(12.6,2.5){\psscalebox{0.45}{\psPig[fillcolor=pink](0,0)}}
+            \rput(14.5,2.5){\it\textcolor{SteelBlue}{Pigas}}
+            \rput(14.5,2){\it\textcolor{SteelBlue}{-125 points}}
+         \end{pspicture}
+
+         Compléter le tableau suivant des gains et des pertes. En déduire le total, puis le classement.
+         \begin{center}
+            {\hautab{0.9}
+            \begin{tabular}{|C{9.5}|*3{C{1.7}|}}
+               \hline
+               \rowcolor{SteelBlue!50} Pêche & Gains & Pertes & Total \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Lojain}
+                  \rput(2,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput(3.5,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput(5,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput{-30}(5.8,2.3){\psscalebox{0.4}{\psBird}}
+                  \rput(8.3,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Nihal}
+                  \rput{-30}(2.2,2.25){\psscalebox{0.3}{\psAnt}}
+                  \rput(3.7,2.3){\psscalebox{0.33}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(4.7,1.9){\psscalebox{0.2}{\psFish[fillstyle=slope]}} 
+                  \rput(6.4,1.9){\psscalebox{0.2}{\psFish[fillstyle=slope]}} 
+                  \rput{-30}(8.5,2.25){\psscalebox{0.3}{\psAnt}}
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Lorette}
+                  \rput(2,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput(3.5,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput{-30}(4.2,2.3){\psscalebox{0.4}{\psBird}}
+                  \rput(6.8,2.3){\psscalebox{0.33}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(7.8,1.9){\psscalebox{0.2}{\psFish[fillstyle=slope]}} 
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Lina}
+                  \rput(2,2.3){\psscalebox{0.33}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(3.5,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+                  \rput(4.6,1.9){\psscalebox{0.2}{\psFish[fillstyle=slope]}} 
+                  \rput(6.7,2.25){\psscalebox{0.3}{\psBill}}
+                  \rput(8.4,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Milan}
+                  \rput{-30}(2,2.25){\psscalebox{0.3}{\psAnt}}
+                  \rput(3.5,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+                  \rput{-30}(5.2,2.25){\psscalebox{0.3}{\psAnt}}
+                  \rput{-30}(6.8,2.25){\psscalebox{0.3}{\psAnt}}
+                  \rput{-30}(8.5,2.25){\psscalebox{0.3}{\psAnt}}
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Marwa}
+                  \rput{-30}(1.1,2.3){\psscalebox{0.4}{\psBird}}
+                  \rput(3.5,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+                  \rput(4.6,1.9){\psscalebox{0.2}{\psFish[fillstyle=slope]}}
+                  \rput(6.7,2.3){\psscalebox{0.35}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(8.2,1.7){\psKangaroo[fillcolor=brown]{1.2}}
+               \end{pspicture} & & & \\
+               \hline
+               \begin{pspicture}(0,1.5)(9.5,3)
+                  \rput[l](0,2.2){Roxane}
+                  \rput(2.1,2.3){\psscalebox{0.35}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(3.6,2.3){\psscalebox{0.35}{\psPig[fillcolor=pink](0,0)}}
+                  \rput(5.1,2.3){\psscalebox{0.35}{\psPig[fillcolor=pink](0,0)}}
+                  \rput{-30}(5.8,2.3){\psscalebox{0.4}{\psBird}}
+                  \rput{-30}(7.4,2.3){\psscalebox{0.4}{\psBird}}
+               \end{pspicture} & & & \\
+               \hline
+            \end{tabular}}
+         \end{center} \medskip
+         Classement : \pointilles
+
+   \end{AActivite}
+
+\end{Maquette}
+
+
+%%%Trace écrite %%%
+\begin{Maquette}[Cours]{Theme={Trace écrite},Couleur={0.4[SteelBlue,Black]}}
+
+   %%%1
+   \section{Additionner deux nombres relatifs}
+
+      \begin{methode*}{Somme de deux nombres relatifs}
+         \begin{itemize}
+            \item La somme de deux nombres relatifs ayant {\bf le même signe} s'obtient en ajoutant les distances à 0 et en mettant le même signe que les nombres. 
+            \item La somme de deux nombres relatifs n'ayant {\bf pas le même signe} s'obtient en calculant la différence entre les distances à 0 et en mettant le signe du terme ayant la plus grande distance à 0.
+         \end{itemize}
+         \begin{exbmethode}
+            \begin{multicols}{2}
+               Nombres de même signe : \par
+               $A =(+3)+(+7) = 3+7$ \par
+               $B =(-12)+(-5)$ \par
+               Nombres de signes différents : \par
+               $C =(-7)+(+3) =(-7)+3$ \par
+               $D =(+12)+(-5) =12+(-5)$
+            \end{multicols}
+            \tcblower
+               \begin{multicols}{2}
+                  $\bullet$ Le signe devant 3 et 7 est $+$ \par
+                  on additionne 3 et 7 et on met le signe $+$ : $A =+10$. \par
+                  On peut écrire $A =+(3+7) =+10 =10$. \par
+                  $\bullet$ Le signe devant 12 et 5 est $-$ \par
+                  on additionne 12 et 5 et on met le signe $-$ : $B =-17$. \par
+                  On peut écrire $B =-(12+5) =-17$. \par
+                  $\bullet$ Le signe devant 7 est $-$ et celui devant 3 est $+$ \par
+                  on effectue la différence entre 3 et 7 et \par
+                  on met le signe $-$ : $C =-(7-3) =-4$. \par
+                  $\bullet$ Le signe devant 12 est $+$ et celui devant 5 est $-$ \par
+                  on effectue la différence entre 5 et 12 et \par
+                  on met le signe $+$ : $D =+(12-5) =+7 =7$. 
+               \end{multicols}
+         \end{exbmethode}
+      \end{methode*}
+
+      \begin{propriete*}{}
+         La somme de deux nombres opposés vaut 0.
+      \end{propriete*}
+
+      \begin{exemple*}{}
+         $E =(+2\,022)+(-2\,022) =(-2\,022)+(+2\,022) =2\,022-2\,022 =0$.
+      \end{exemple*}
+
+   %%%2
+   \section{Soustraire deux nombres relatifs}
+
+      \begin{propriete*}{}
+         Soustraire un nombre revient à ajouter son opposé : $a-b=a+(-b)$.
+      \end{propriete*}
+
+      \begin{exemple*}{}
+         $F =(+15,3)-(-5,1) =(+15,3)+(+5,1) =+(15,3+5,1) =+20,4 =20,4$ \par
+         $G =(+2,4)-(+1,3)=(+2,4)+(-1,3) =+(2,4-1,3) =+1,1 =1,1$
+      \end{exemple*}
+
+
+      \begin{methode*}{Simplification d'expressions}
+         Pour {\bf simplifier} les écritures dans les opérations :
+         \begin{enumerate}
+            \item on transforme chaque soustraction en addition de l'opposé ;
+            \item on écrit l'expression en enlevant les parenthèses et les signes $+$ devant les nombres ;
+            \item on peut éventuellement regrouper les termes de même signe afin de les calculer ensemble.
+         \end{enumerate}
+         \begin{exbmethode}
+            On souhaite simplifier l'expression $H =(+1,2)+(+3,4)+(-1,5)-(+2,7)-(-5,7)$.
+            \tcblower
+               \begin{enumerate}
+                  \item $H =(+1,2)+(+3,4)+(-1,5)+(-2,7)+(+5,7)$ \par
+                  \item $H =1,2+3,4-1,5-2,7+5,7$ \par
+                  \item $H =(1,2+3,4+5,7)-(1,5+2,7) =10,3-4,2 =6,1$.
+               \end{enumerate}
+         \end{exbmethode}
+      \end{methode*}
+
+\end{Maquette}
+
+
+%%% Exercices %%%
+\begin{Maquette}[Fiche,CorrigeFin,Colonnes=2]{}
+   
+   \begin{multicols}{2}
+
+      \begin{exercice}[SLF] %1
+         Effectuer les calculs suivants :
+         \begin{enumerate}[label=\Alph*]
+            \item $=(-12)+(-15) =\pointilles$
+            \item $=(-20)+(+18) =\pointilles$
+            \item $=(+21,5)+(-21,5) =\pointilles$
+            \item $=(+10)+(-13) =\pointilles$
+            \item $=(-3,5)+(+16) =\pointilles$
+            \item $=(+13)+(+7) =\pointilles$
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}[label=\Alph*]
+            \item $=(-12)+(-15) =-(12+15) =\cor{-27}$
+            \item $=(-20)+(+18) =-(20-18) =\cor{-2}$
+            \item $=(+21,5)+(-21,5) =21,5-21,5 =\cor{0}$
+            \item $=(+10)+(-13) =-(13-10) =\cor{-3}$
+            \item $=(-3,5)+(+16) =+(16-3,5) =\cor{12,5}$
+            \item $=(+13)+(+7) =+(13+7) =\cor{20}$
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice}[SLF] %2
+         Pour chaque cas, transformer la soustraction en addition puis effectuer le calcul.
+         \begin{enumerate}[label=\Alph*]
+            \item $=(-12)-(+15) =\pointilles$
+            \item $=(-45)-(-41) =\pointilles$
+            \item $=(+32)-(+27) =\pointilles$
+            \item $=(-2)-(+2,7) =\pointilles$
+            \item $=(-1,4)-(-2,3) =\pointilles$
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}[label=\Alph*]
+            \item $=(-12)-(+15)=(-12)+(-15) =-(12+15) =\cor{-27}$
+            \item $=(-45)-(-41) =(-45)+(+41) =-(45-41) =\cor{-4}$
+            \item $=(+32)-(+27) =(+32)+(-27) =+(32-27) =\cor{5}$
+            \item $=(-2)-(+2,7) =(-2)+(-2,7) =-(2+2,7) =\cor{-4,7}$
+            \item {\small$=(-1,1)-(-3,7) =(-1,1)+(+3,7) =+(3,7-1,1) =\cor{2,6}$}
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice}[Dur] %3
+         Effectuer les calculs suivants en simplifiant.
+         \begin{enumerate}[label=\Alph*]
+            \item $=(+12)+(-11)+(+25)+(-17)$
+            \item $=(-2,1)+(-9)+(+6,4)+(-8,3)$
+            \item $=(+14)+(-7)+(+2)+(-3,75)+(-5,25)$
+            \item $=(+13,5)+(-8,1)+(-6,9)+(-5,5)$
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}[label=\Alph*]
+            \item $=(+12)+(-11)+(+25)+(-17)$ \par
+               $=+(12+25)-(11+17) =+37-28 =\cor{9}$
+            \item $=(-2,1)+(-9)+(+6,4)+(-8,3)$ \par
+               $=+(6,4)-(2,1+9+8,3) =+6,4-19,4 =\cor{-13}$
+            \item $=(+14)+(-7)+(+2)+(-3,75)+(-5,25)$ \par
+               $=+(14+2)-(7+3,75+5,25) =+16-16 =\cor{0}$
+            \item $=(+13,5)+(-8,1)+(-6,9)+(-5,5)$ \par
+               $=+(13,5)-(8,1+6,9+5,5) =+13,5-20,5 =\cor{-7}$
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice}[Dur] %4
+         Pour chaque expression, regrouper astucieusement puis calculer.
+         \begin{enumerate}[label=\Alph*]
+            \item $=-14+5-2$
+            \item $=-2-23+33$
+            \item $=18-7+9-18-9+7$
+            \item $=6,4+11,5-3,4+0,5$
+            \item $=13,36+4+6-3,36$
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}[label=\Alph*]
+            \item $=-14+5-2 =5-(14+2) =5-16 =\cor{-11}$
+            \item $=-2-23+33 =33-(2+23) =33-25 =\cor{8}$
+            \item $=18-7+9-18-9+7$ \par
+               $=(18-18)+(9-9)+(7-7) =0+0+0 =\cor{0}$
+            \item $=6,4+11,5-3,4+0,5$ \par
+               $=(6,4-3,4)+(11,5+0,5) =3+12 =\cor{15}$
+            \item $=13,36+4+6-3,36$ \par
+               $=(13,36-3,36)+(4+6) =10+10 =\cor{20}$
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice} %5
+         Dans le monde entier, les heures locales sont fixées par rapport à l'heure universelle (UT). Paris est à UT, New York est à UT $-\Temps{;;;6}$ et New Delhi est à UT $+\Temps{;;;4;30}$.
+         \begin{enumerate}
+            \item Cyrine, qui est à Montpellier, appelle à New York à \Temps{;;;20} et téléphone pendant trois quarts d'heure. Quelle heure est-il à New York à la fin de l'appel ?
+            \item Après ce coup de téléphone, Cyrine peut-elle raisonnablement appeler à New Delhi ?
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         Montpellier est à la même UT que Paris. \par
+         \begin{enumerate}
+            \item \Temps{;;;20;0} \quad $\xrightarrow{+\Temps{;;;;45}}$ \quad \Temps{;;;20;45}. \par
+               Donc, Cyrine termine son appel à \Temps{;;;20;45}. \par \smallskip
+               \Temps{;;;20;45} \quad $\xrightarrow{-\Temps{;;;6}}$ \quad \Temps{;;;14;45}. \par
+               À cette heure, il est \cor{\Temps{;;;14;45}} à New-York.
+            \item Pour New Delhi, il faut ajouter \Temps{;;;4;30} à l'heure de Paris, on peut décomposer ainsi : \par \smallskip
+               \Temps{;;;20;45} \quad $\xrightarrow{+\Temps{;;;4}}$ \quad \Temps{;;;24;45} = \Temps{;;;0;45} \par \smallskip
+               \Temps{;;;0;45} \quad $\xrightarrow{+\Temps{;;;;30}}$ \quad \Temps{;;;1;15} \par \smallskip
+               Il est \Temps{;;;1;15} du matin donc, \cor{il n'est pas raisonnable d'appeler en Inde !}
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice} %6
+         Dans un QCM de dix questions, une réponse juste rapporte 4 points, une absence de réponse 0 point et une mauvaise réponse enlève 3 points.
+         \begin{enumerate}
+            \item Bilel a 2 bonnes réponses et 8 mauvaises. Quelle est sa note ?
+            \item Quelle est la plus mauvaise note qu'il est possible d'obtenir à ce QCM ? La meilleure note ?
+            \item Jasmine a obtenu 14 points. Donner une combinaison possible pour obtenir ce résultat.
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}
+            \item 2 bonnes réponses donnent  $2\times4\text{ points} =8\text{ points}$ ; \par
+               8 mauvaises réponses enlèvent $8\times3\text{ points} =24\text{ points}$. \par
+               Or, $+8-24 =-(24-8) =-16$ donc, \par
+               la note de Bilel est de \cor{$-16$ points}.
+            \item La plus mauvaise note est obtenue lorsque l'on donne 10 mauvaises réponses, soit $-(10\times3\text{ points}) =\cor{-30\text{ points}}$ ; \par
+               La meilleure note est obtenue lorsque l'on donne 10 bonnes réponses, soit  $+(10\times4\text{ points}) =\cor{+40\text{ points}}$. \par
+            \item Jasmine peut, par exemple, avoir donné :
+               \begin{itemize}
+                  \item \cor{5 bonnes réponses}, soit +20 points ;
+                  \item \cor{2 mauvaises réponses}, soit $-6$ points ; 
+                  \item \cor{3 questions sans réponse}, soit 0 point.
+               \end{itemize}
+            Cela donne bien : $+20-6+0 =14$.
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice} %7
+         Voici un programme de calcul :
+         \begin{center}
+            \ProgCalcul[Enonce,Largeur=5cm]{Choisir un nombre,Ajouter \num{-3},Retirer \num{-1.5},Donner l'opposé du résultat}
+         \end{center}
+         \begin{enumerate}
+            \item Appliquer ce programme au nombre $-2,5$ puis 0.
+            \item Quel nombre faut-il choisir pour obtenir 6 ?
+            \item Soit $x$ le nombre de départ, donner l'expression finale en fonction de $x$.
+         \end{enumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{enumerate}
+            \item $-2,5 \xrightarrow[-3]{+(-3)} -5,5 \xrightarrow[+1,5]{-(-1,5)} -4 \xrightarrow{\text{opposé}} \cor{4}$ \par \smallskip
+               \quad\, $0 \xrightarrow[-3]{+(-3)} -3 \xrightarrow[+1,5]{-(-1,5)} -1,5 \xrightarrow{\text{opposé}} \cor{1,5}$ \par \smallskip
+            \item On effectue les opérations \og à l'envers \fg. \par \smallskip
+               \quad\, $6 \xrightarrow{\text{opposé}} -6 \xrightarrow[-1,5]{+(-1,5)} -7,5  \xrightarrow[+3]{-(-3)}\cor{-4,5}$ \par \smallskip
+            \item $x \xrightarrow[-3]{+(-3)} x-3 \xrightarrow[+1,5]{-(-1,5)} x-3+1,5$ \par
+               \quad\; $=x-1,5 \xrightarrow{\text{opposé}}\cor{-x+1,5}$. \par \smallskip
+         \end{enumerate}
+      \end{Solution}
+      
+      
+      \begin{exercice}[SLF] %8
+         Compléter les pyramides suivantes sachant que chaque nombre est la somme des nombres se trouvant dans les deux cases juste en dessous.  \par \medskip
+         \PyramideNombre[Etages=4,Largeur=9mm]{\num{-1},~,~,~,8,~,~,\num{-4},~,\num{-7}}
+         \quad
+         \PyramideNombre[Etages=4,Largeur=9mm]{6,~,~,~,\num{-7},~,~,\num{-5},~,\num{-3}}
+         \vskip5mm
+         \PyramideNombre[Etages=4,Largeur=9mm]{\num{-1.5},~,~,~,3,~,~,\num{-5},~,\num{-5}}
+         \quad
+         \PyramideNombre[Etages=4,Largeur=9mm]{\num{6.3},~,~,~,\num{7.2},~,~,~,\num{-3.1},\num{-5.2}}
+      \end{exercice}
+      
+      \begin{Solution}
+         \medskip
+         \PyramideNombre[Etages=4,Largeur=9mm,Hauteur=8mm,Couleur=1.5RoyalBlue]{\num{-1},*9,*\num{-21},*30,8,*\num{-12},*9,\num{-4},*\num{-3},\num{-7}}   
+         \quad
+         \PyramideNombre[Etages=4,Largeur=9mm,Hauteur=8mm,Couleur=1.5RoyalBlue]{6,*\num{-13},*15,*\num{-15},\num{-7},*2,*0,\num{-5},*2,\num{-3}}
+         \vskip3mm
+         \PyramideNombre[Etages=4,Largeur=9mm,Hauteur=8mm,Couleur=1.5RoyalBlue]{\num{-1.5},*\num{4,5},*\num{-12,5},*\num{20,5},3,*\num{-8},*8,\num{-5},*0,\num{-5}}
+         \quad
+         \PyramideNombre[Etages=4,Largeur=9mm,Hauteur=8mm,Couleur=1.5RoyalBlue]{\num{6.3},*\num{0,9},*\num{-12,2},*\num{16,4},\num{7.2},*\num{-9,3},*\num{6,2},*\num{-2,1},\num{-3.1},\num{-5.2}}
+      \end{Solution}
+
+   \end{multicols}
+
+\end{Maquette}
+
+
+%%% Récré %%%
+\begin{Maquette}[Cours]{Theme={Activité récréative},Couleur={IndianRed}}
+    
+   \ARtitre{Décryptage}
+
+      Décrypter les codes suivants utilisé par l'agent Zérozérossette sachant que chaque symbole correspond à un nombre entier relatif et que la somme de chaque ligne et de chaque colonne est indiquée en bout de celle-ci. \par \bigskip
+
+      \begin{center}
+         {\hautab{1.8}
+         \begin{tabular}{*{7}{C{0.5}}}
+            \Large\ding{101} & $+$ & \Large\ding{101} & $+$ & \Large\ding{40} & $=$ & \large 16 \\
+            $+$ & & $+$ & & $+$ & & \\
+            \Large\ding{168} & + & \Large\ding{168} & + & \Large\ding{168} & $=$ & \large 9 \\
+            $+$ & & $+$ & & $+$ & & \\
+            \Large\ding{40} & + & \Large\ding{52} & + & \Large\ding{168} & $=$ & \large 18 \\
+            $=$ & & $=$ & & $=$ & & \\
+            \large 14 & & \large 17 & & \large 12 & & \\
+         \end{tabular}
+         \hskip3cm
+         \begin{tabular}{*{7}{C{0.5}}}
+            \Large\ding{101} & $+$ & \Large\ding{101} & $+$ & \Large\ding{101} & $=$ & \large $-3$ \\
+            $+$ & & $+$ & & $+$ & & \\
+            \Large\ding{40} & + & \Large\ding{168} & + & \Large\ding{101} & $=$ & \large $-3$ \\
+            $+$ & & $+$ & & $+$ & & \\
+            \Large\ding{52} & + & \Large\ding{52} & + & \Large\ding{168} & $=$ & \large 6 \\
+            $=$ & & $=$ & & $=$ & & \\
+            \large 6 & & \large 0 & & \large $-6$ & & \\
+         \end{tabular}
+
+         \vskip8mm
+         
+         \begin{tabular}{|p{2cm}|p{2cm}|}
+            \hline
+            \Large\ding{101} = & \Large\ding{40} = \\
+            \hline
+            \Large\ding{168} = & \Large\ding{52} = \\
+            \hline
+         \end{tabular}
+         \hskip4.5cm
+         \begin{tabular}{|p{2cm}|p{2cm}|}
+            \hline
+            \Large\ding{101} = & \Large\ding{40} = \\
+            \hline
+            \Large\ding{168} = & \Large\ding{52} = \\
+            \hline
+         \end{tabular}
+
+         \vskip18mm
+         
+         {\setlength{\tabcolsep}{0mm}
+         \begin{tabular}{*{9}{C{0.8}}}
+            \Large\ding{101} & $+$ & \Large\ding{40} & $+$ & \Large\ding{40} & $+$ & \Large\ding{101} & $=$ & \large 2 \\
+            $+$ & & $+$ & & $+$ & & $+$ & \\
+            \Large\ding{40} & $+$ & \Large\ding{40} & $+$ & \Large\ding{40} & $+$ & \Large\ding{168} & $=$ & \large 9 \\
+            $+$ & & $+$ & & $+$ & & $+$ & \\
+            \Large\ding{40} & + & \Large\ding{168} & + & \Large\ding{52} & $+$ & \Large\ding{36} & $=$ & \large $-7$ \\
+            $=$ & & $=$ & & $=$ & & $=$ & \\
+            \large 3 & & \large 7 & & \large $-1$ & & \large $-5$ & & \\ 
+         \end{tabular}
+         \hskip2cm
+         \begin{tabular}{*{9}{C{0.8}}}
+            \Large\ding{52} & $+$ & \Large\ding{52} & $+$ & \Large\ding{168} & $+$ & \Large\ding{168} & $=$ & \large \!\!$-158$ \\
+            $+$ & & $+$ & & $+$ & & $+$ & \\
+            \Large\ding{40} & $+$ & \Large\ding{52} & $+$ & \Large\ding{36} & $+$ & \Large\ding{36} & $=$ & \large \!$-19$ \\
+            $+$ & & $+$ & & $+$ & & $+$ & \\
+            \Large\ding{101} & + & \Large\ding{52} & + & \Large\ding{40} & $+$ & \Large\ding{52} & $=$ & \large \!$-86$ \\
+            $=$ & & $=$ & & $=$ & & $=$ & \\
+            \large \!$-32$ & & \large \!\!$-162$ & & \large \!$-37$ & & \large \!$-32$ & & \\ 
+         \end{tabular}}
+
+         \vskip8mm
+      
+         \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
+            \hline
+            \Large\ding{101} = & \Large\ding{40} = & \Large\ding{168} = \\
+            \hline
+            \Large\ding{36} = & \Large\ding{52} = \\
+            \cline{1-2}
+         \end{tabular}
+         \hskip2cm
+         \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
+            \hline
+            \Large\ding{101} = & \Large\ding{40} = & \Large\ding{168} = \\
+            \hline
+            \Large\ding{36} = & \Large\ding{52} = \\
+            \cline{1-2}
+         \end{tabular}}
+      \end{center}
+
+\end{Maquette}

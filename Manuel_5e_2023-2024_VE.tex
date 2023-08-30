@@ -1,0 +1,252 @@
+\documentclass[10pt,french,a4paper]{book} 
+
+\usepackage{ProfCollege}
+\usepackage{ProfMaquette}
+\usepackage{Package_Manuel_5e}
+
+\begin{document}
+
+\RenewDocumentEnvironment{Maquette}{om}{%
+  % on remet à zéro les compteurs de solutions : inutile ?
+  \setcounter{RetiensSol}{0}%
+  \setcounter{RetiensRep}{0}%
+  \setcounter{RetiensInd}{0}%
+  % on remet à zéro le compteur des exercices
+  \setcounter{PfMExo}{0}%
+  \setcounter{PfMSOS}{0}%
+  % nouvelles valeurs.
+  \stepcounter{PfMMaquette}%
+  % options de boulot
+  \IfHookExistsTF{env/Maquette/after}{\RemoveFromHook{env/Maquette/after}[*]}{}%
+  \IfHookExistsTF{env/exercice/after}{\RemoveFromHook{env/exercice/after}[*]}{}%
+  %\AddToHook{env/exercice/after}[ChoixExo]{\PfMChoixAffichageCorrection}%
+  \useKVdefault[Boulot]%
+  \setKV[Boulot]{#1}%
+  \IfHookExistsTF{env/exercice/after}{\RemoveFromHook{env/exercice/after}[*]\AddToHook{env/exercice/after}[ChoixExo]{\PfMChoixAffichageCorrection}}{\AddToHook{env/exercice/after}[ChoixExo]{\PfMChoixAffichageCorrection}}%
+  \ifboolKV[Boulot]{Cours}{%
+      \setKV[Cours]{#2}%
+      \TikzCours%
+      \let\exercice\exerciceFiche\let\endexercice\endexerciceFiche%
+      %\let\Exercice\exerciceFiche\let\endExercice\endexerciceFiche%
+      \ifboolKV[Boulot]{CorrigeFin}{%
+          \AddToHook{env/Maquette/after}[Correction]{%
+            \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+            \TikzFicheCor{#2}%
+            \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                \PfMAffichageCorrige%
+                \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+          }%
+        }{}%
+    }{%
+  \ifboolKV[Boulot]{RecapBrevet}{%
+    \setKV[RecapBrevet]{#2}%
+    \TikzRecapBrevet%
+    \let\exercice\ExerciceRecapBrevet\let\endexercice\endExerciceRecapBrevet%
+    %\let\Exercice\ExerciceRecapBrevet\let\endExercice\endExerciceRecapBrevet%
+    \ifboolKV[Boulot]{CorrigeFin}{%
+        \AddToHook{env/Maquette/after}[Correction]{%
+          \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+        \TikzRecapBrevetCor{#2}%
+        \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                       \PfMAffichageCorrige%
+                     \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+      }%
+    }{}%
+  }{%
+    \ifboolKV[Boulot]{ParcoursPerso}{%
+      \setKV[ParcoursPerso]{#2}%
+      \DTLloaddb[noheader,keys={PrenomEleve,NomEleve,ListeExo}]{dataperso}{\useKV[ParcoursPerso]{Fichier}.csv}%
+      \let\exercice\exerciceParcoursPerso\let\endexercice\endexerciceParcoursPerso%
+      %\let\Exercice\exerciceParcoursPerso\let\endExercice\endexerciceParcoursPerso%
+      \ifboolKV[Boulot]{CorrigeFin}{\setcounter{PfMCorrigeParcoursPerso}{1}}{}%
+      \setcounter{PfMExo}{0}%
+      \AtEndDocument{%
+        \Recapitulatif{#2}%
+      }%
+    }{%
+      \ifboolKV[Boulot]{Parcours}{%
+        \setKV[Parcours]{#2}\TikzParcours%
+        \let\exercice\exerciceParcours\let\endexercice\endexerciceParcours%
+        %\let\Exercice\exerciceParcours\let\endExercice\endexerciceParcours%
+        \ifboolKV[Boulot]{CorrigeFin}{%
+            \AddToHook{env/Maquette/after}[Correction]{%
+              \setKV[Boulot]{#1}%
+              \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+              \TikzParcoursCor{#2}
+              \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                  \PfMAffichageCorrige%
+                  \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+            }%
+        }{}%
+      }{%
+        \ifboolKV[Boulot]{PdT}{%
+          \setKV[PdT]{#2}\TikzPdT%
+          \let\exercice\exercicePdT\let\endexercice\endexercicePdT%
+          %\let\Exercice\exercicePdT\let\endExercice\endexercicePdT%
+          \ifboolKV[Boulot]{CorrigeFin}{%
+              \AddToHook{env/Maquette/after}[Correction]{%
+                \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+              \TikzPdTCor{#2}%
+              \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                       \PfMAffichageCorrige%
+                     \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+            }%
+          }{}%
+        }{
+          \ifboolKV[Boulot]{DM}{%
+            \setKV[DM]{#2}\TikzDM%
+            \let\exercice\exerciceDM\let\endexercice\endexerciceDM%
+            %\let\Exercice\exerciceDM\let\endExercice\endexerciceDM%
+            \ifboolKV[Boulot]{CorrigeFin}{%
+                \AddToHook{env/Maquette/after}[Correction]{%
+                  \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+                \TikzDMCor{#2}%
+                \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                    \PfMAffichageCorrige%
+                    \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+              }%
+            }{}%
+          }{%
+            \ifboolKV[Boulot]{Fiche}{%
+                \setKV[Fiche]{#2}%
+                \TikzFiche
+                \let\exercice\exerciceFiche\let\endexercice\endexerciceFiche%
+                %\let\Exercice\exerciceFiche\let\endExercice\endexerciceFiche%
+                \ifboolKV[Boulot]{CorrigeFin}{}{}%
+            }{%
+              \ifboolKV[Boulot]{DS}{%
+                \setKV[DS]{#2}\TikzDS%
+                \let\exercice\exerciceDS\let\endexercice\endexerciceDS%
+%                \let\Exercice\exerciceDS\let\endExercice\endexerciceDS%
+                \ifboolKV[Boulot]{BaremeComplet}{%
+                  \begin{center}
+                    \TableauRecapitulatif
+                  \end{center}
+                }{}%
+                \ifboolKV[Boulot]{CorrigeFin}{%
+                    \AddToHook{env/Maquette/after}[Correction]{%
+                      \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+                    \TikzDSCor{#2}%
+                    \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                       \PfMAffichageCorrige%
+                     \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+                  }%
+                }{}%
+              }{%
+                \ifboolKV[Boulot]{IE}{%
+                  \setKV[IE]{#2}\TikzIE%
+                  \let\exercice\exerciceDS\let\endexercice\endexerciceDS%On garde exerciceDS
+ %                 \let\Exercice\exerciceDS\let\endExercice\endexerciceDS%On garde exerciceDS
+                  \ifboolKV[Boulot]{CorrigeFin}{%
+                      \AddToHook{env/Maquette/after}[Correction]{%
+                        \setKV[Boulot]{#1}%
+                      \setlength{\columnseprule}{\useKV[Boulot]{Epaisseur}}%
+                      \TikzIECor{#2}%
+                      \ifboolKV[Boulot]{CorrectionColonnes}{\begin{multicols}{\useKV[Boulot]{Colonnes}}}{}%
+                       \PfMAffichageCorrige%
+                     \ifboolKV[Boulot]{CorrectionColonnes}{\end{multicols}}{}%
+                    }%
+                  }{}%
+                }{%
+                  \ifboolKV[Boulot]{Kholle}{%
+                    \setKV[Kholle]{#2}%
+                    \TikzKholle%
+                    \let\exercice\exerciceKholle\let\endexercice\endexerciceKholle%
+                    \ifboolKV[Kholle]{CR}{}{%
+                      \ifboolKV[Boulot]{CorrigeFin}{%
+                        \AddToHook{env/Maquette/after}[Correction]{%
+                          \TikzKholleCor{#2}%
+                          \TikzKholleCor{#2}%
+                          \TikzKholleCor{#2}%
+                          \PfMAffichageCorrige%
+                        }%
+                      }{}%
+                    }%
+                  }{}%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+    }%
+  }%
+}{}%
+
+\frontmatter
+    \include{Annexes/1ere_de_couverture_5e_23-24}
+
+\mainmatter
+    \include{Annexes/Intro_manuel_5e_23-24}
+    \include{Annexes/Programmation_23-24}
+    \include{Annexes/Sommaire_23-24}
+
+    \input{S01_Enchainement_d_operations/23-24_M5_S01_Enchainement_d_operations}
+    \pagebreak
+    \input{S02_Angles_particuliers/23-24_M5_S02_Angles_particuliers}
+    \pagebreak
+    \input{S03_En_route_vers_la_programmation/23-24_M5_S03_En_route_vers_la_programmation}
+    \pagebreak
+    \input{S04_Nombres_relatifs/23-24_M5_S04_Nombres_relatifs}
+    \pagebreak
+    \input{S05_Reperage_dans_le_plan/23-24_M5_S05_Reperage_dans_le_plan}
+    \pagebreak
+    \input{S06_Effectif_frequence_et_moyenne/23-24_M5_S06_Effectif_frequence_et_moyenne}
+    \pagebreak
+    \input{S07_Multiples_et_diviseurs/23-24_M5_S07_Multiples_et_diviseurs}
+    \pagebreak
+    \input{S08_Somme_des_angles_d_un_triangle/23-24_M5_S8_Somme_des_angles_d_un_triangle}
+    \pagebreak
+    \input{S09_Horaires_et_durees/23-24_M5_S09_Horaires_et_durees}
+    \pagebreak
+    \input{S10_Comparaison_et_egalite_de_fractions/23-24_M5_S10_Comparaison_et_egalite_de_fractions}
+    \pagebreak
+    \input{S11_Symetrie_centrale/23-24_M5_S11_Symetrie_centrale}
+    \pagebreak
+    \input{S12_Notions_de_probabilites/23-24_M5_S12_Notions_de_probabilites}
+    \pagebreak
+    \input{S13_Expressions_litterales/23-24_M5_S13_Expressions_litterales}
+    \pagebreak
+    \input{S14_Reconnaitre_des_solides/23-24_M5_S14_Reconnaitre_des_solides}
+    \pagebreak
+    \input{S15_Perimetre_et_aire/23-24_M5_S15_Perimetre _et_aire}
+    \pagebreak
+    \input{S16_Calculs_avec_des_nombres_relatifs/23-24_M5_S16_Calculs_avec_des_nombres_relatifs}
+    \pagebreak
+    \input{S17_Inegalite_triangulaire/23-24_M5_S17_Inegalite_triangulaire}
+    \pagebreak
+    \input{S18_Le_ratio/23-24_M5_S18_Le_ratio}
+    \pagebreak
+    \input{S19_Nombres_premiers/23-24_M5_S19_Nombres_premiers}
+    \pagebreak
+    \input{S20_Le_parallelogramme/23-24_M5_S20_Le_parallelogramme}
+    \pagebreak
+    \input{S21_Volume_du_pave_du_prisme_et_du_cylindre/23-24_M5_S21_Volume_du_pave_du_prisme_et_du_cylindre}
+    \pagebreak
+    \input{S22_Calculs_avec_des_fractions/23-24_M5_S22_Calculs_avec_des_fractions}
+    \pagebreak
+    \input{S23_Representer_le_pave_et_le_cylindre/23-24_M5_S23_Representer_le_pave_et_le_cylindre}
+    \pagebreak
+    \input{S24_La_proportionnalite/23-24_M5_S24_La_proportionnalite}
+    \pagebreak
+    \input{S25_Distributivite_simple_et_egalites/23-24_M5_S25_Distributivite_simple_et_egalites}
+    \pagebreak
+    \input{S26_Hauteurs_et_mediatrices_du_triangle/23-24_M5_S26_Hauteurs_et_mediatrices_du_triangle}
+    \pagebreak
+    \input{S27_L_aire_du_parallelogramme/23-24_M5_S27_L_aire_du_parallelogramme}
+    \pagebreak
+    \input{S28_Proprietes_des_symetries/23-24_M5_S28_Proprietes_des_symetries}
+
+    \include{Annexes/Videos_et_tests_23-24}
+    %\include{Annexes/Corrige_des_activites_23-24}
+
+\backmatter
+    \include{Annexes/4e_de_couverture_23-24}
+
+\end{document}

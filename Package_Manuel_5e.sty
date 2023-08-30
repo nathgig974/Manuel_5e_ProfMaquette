@@ -1,0 +1,471 @@
+%%% Packages requis %%%
+\RequirePackage[hmargin=1.5cm,top=1.25cm,bottom=1cm,includefoot]{geometry}
+\RequirePackage{babel}
+\RequirePackage{hyperref}
+\RequirePackage{setspace}
+\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\RequirePackage{pstricks}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{microtype}
+\RequirePackage{enumitem}
+\RequirePackage{pst-fun,pst-all,pstricks-add,pst-eucl,pst-solides3d,pst-poly,pst-platon}
+\RequirePackage{frcursive}
+\RequirePackage{unicode-math}
+\RequirePackage{tabularx}
+\RequirePackage{qrcode}
+\RequirePackage[tikz]{bclogo}
+\RequirePackage{twemojis}
+
+%%% Mise en page %%%
+\pagestyle{fancy}
+\setlength{\parindent}{0pt}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+\renewcommand{\headrulewidth}{0mm}
+\fancyhead[L]{}
+\fancyhead[C]{} 
+\fancyhead[R]{}
+\fancyfoot[RO]{\colorbox{black}{\white\thepage} \quad \small\it N. Daval}
+\fancyfoot[LO]{\textcolor{titlecolour}{\leftmark \; (5\up{e})}}
+\fancyfoot[C]{} 
+\fancyfoot[LE]{\colorbox{black}{\white\thepage} \quad \small\it N. Daval}
+\fancyfoot[RE]{\textcolor{titlecolour}{\leftmark \; (5\up{e})}}
+\newfontfamily\myfontScratch[]{FreeSans}
+\setstretch{1.2}
+\setitemize[1]{leftmargin=*,label=\textbullet}
+\setenumerate[1]{leftmargin=*}
+\setenumerate[2]{leftmargin=6mm}
+\setlength\multicolsep{1pt}
+\newcommand\hautab[1]{\renewcommand{\arraystretch}{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1cm}}
+\newcommand{\textcircledd}[1]{\tikz[baseline=(letter.base)]\node[draw,circle,inner sep=1pt] (letter) {$#1$};}
+
+%%% Format du manuel %%%
+% Thèmes
+\newcommand{\theme}{\colorlet{titlecolour}{Black}}
+\newcommand{\themeN}{\colorlet{titlecolour}{Crimson}\def\themetitle{Nombres \vskip0pt \& Calculs}}
+\newcommand{\themeG}{\colorlet{titlecolour}{DodgerBlue}\def\themetitle{Espace \& \vskip0pt géométrie}}
+\newcommand{\themeO}{\colorlet{titlecolour}{DarkViolet}\def\themetitle{Organisation \& \vskip0pt gestion de données}}
+\newcommand{\themeM}{\colorlet{titlecolour}{ForestGreen}\def\themetitle{Grandeurs \vskip0pt \& mesures}}
+\newcommand{\themeA}{\colorlet{titlecolour}{DarkOrange}\def\themetitle{Algorithmes \vskip0pt \& programmation}}
+
+% Redéfinition du nom du chapitre
+\addto{\captionsfrench}{\renewcommand*{\chaptername}{Séquence}}
+
+% Titre du chapitre
+\titleformat{\chapter}[display]
+   {\bfseries\color{titlecolour}}
+   {\parbox[c][20mm][c]{40mm}{\gray\large \themetitle}
+    \hfill
+    \rotatebox[origin=c]{90}{\normalfont\color{black}\Large{\textsf{\chaptertitlename}}}
+    \hspace{2mm}%
+    {\colorbox{titlecolour}{\parbox[c][28mm][c]{28mm}{\centering\color{white}\fontsize{80}{80}\selectfont\thechapter}}}}
+   {10pt}
+   {\titlerule[4pt]\vskip3pt
+    \titlerule[2pt]\vskip4pt
+    \filcenter\Huge\sffamily}
+   [\vskip-8mm\rule{\linewidth}{2pt}\vskip-10mm
+    \rule{\linewidth}{4pt}]
+
+
+%%% Format de la page de séquence %%%
+
+% Connaissances et compétences
+\newenvironment{connaissances}{\begin{itemize}}{\end{itemize}}
+\tcolorboxenvironment{connaissances}{blanker,before skip=3mm,after skip=10mm,borderline west={2mm}{-4mm}{red}}
+
+\newenvironment{competences}{\begin{itemize}}{\end{itemize}}
+\tcolorboxenvironment{competences}{blanker,before skip=3mm,after skip=3mm,borderline west={2mm}{-4mm}{teal}}
+
+\newcommand{\programme}[2]{%
+   \textcolor{red}{\bf Connaissances :}
+   \begin{connaissances} #1 \end{connaissances}
+   \textcolor{teal}{\bf Compétences :}
+   \begin{competences} #2 \end{competences}}
+
+% Débat avec grenouille
+\newtcolorbox{debat}[2][]{skin=bicolor,before skip=2mm,after skip=5mm,boxrule=1mm,
+   colback=titlecolour!45,colbacklower=titlecolour!10,colframe=Gold,colupper=white,collower=titlecolour,halign lower=flush center,
+   attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},boxed title style={frame code={
+      \path[fill=titlecolour] ([yshift=-1mm,xshift=-1mm]frame.north west) arc[start angle=0,end angle=180,radius=1mm] ([yshift=-1mm,xshift=1mm]frame.north east) arc[start angle=180,end angle=0,radius=1mm];
+      \path[left color=titlecolour!50!black,right color=titlecolour!50!black,middle color=titlecolour!90!white] ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east) [rounded corners=1mm] -- ([xshift=1mm,yshift=-1mm]frame.north east) -- (frame.south east) -- (frame.south west) -- ([xshift=-1mm,yshift=-1mm]frame.north west) [sharp corners] -- cycle; },interior engine=empty, },
+   overlay={\foreach \x in {14cm,15.5cm}{%
+      \begin{scope}[shift={([xshift=\x]frame.north west)}]
+       \path[draw=titlecolour,fill=lightgray!25,line width=1mm] (0,0) arc (0:180:5mm);
+       \path[fill=Brown] (-0.5,0) arc (0:180:1mm);
+      \end{scope}}}
+   fonttitle=\white\bfseries,
+   title={#2},#1}
+
+
+%%% Format de la page "activité d'approche" %%%
+
+% Entêtes de l'environnement "cours", valable pour les activité et le cours
+\tcbset{usercours/.style={%
+   before=\vfill\pagebreak,enhanced,colback=white,frame hidden,
+   overlay unbroken and first={%
+      \node[anchor=center,inner sep=0pt] at (frame.center) {\mplibforcehmode
+      \begin{mplibcode}
+         fill (0,0)--(10cm,0cm)--(10cm,1.2cm)--(0,1.2cm)--cycle withcolor \useKV[Cours]{Couleur};
+         path SquareND;
+         for j=0 upto 4:
+            for k=0 upto 4-j:
+               SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((0.05mm,0.05mm)+2mm*(j,k));
+               fill SquareND withcolor (0.2*(j+k))[white,\useKV[Cours]{Couleur}];
+               trace SquareND withcolor (0.2*(j+k))[white,\useKV[Cours]{Couleur}];
+            endfor;
+         endfor;
+         for j=0 upto 4:
+            for k=0 upto j:
+               SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((8.995cm,0.05mm)+2mm*(j,k));
+               fill SquareND withcolor (0.2*(j-k+1))[\useKV[Cours]{Couleur},white];
+               trace SquareND withcolor (0.2*(j-k+1))[\useKV[Cours]{Couleur},white];
+            endfor;
+         endfor;
+      \end{mplibcode}};
+      \node at (frame.center) {\color{white} \huge\sffamily\bfseries \useKV[Cours]{Theme}};}}}
+
+% Titres
+\newcommand{\AAtitre}[1]{\smallskip\begin{center} \Large\bf\textcolor{SteelBlue}{#1} \end{center}}
+\newcommand{\AApartie}[1]{\medskip \textcolor{SteelBlue}{\large\bf #1} \par}
+
+% Boite de l'activité d'approche
+\newtcolorbox{AActivite}{colback=white,colframe=SteelBlue,fontupper=\linespread{1.5}\selectfont,bottom=5mm}
+
+
+%%% Format de la page "trace écrite" %%%
+
+% Section
+\makeatletter
+   \renewcommand{\thesection}{\@arabic\c@section}
+\makeatother
+\titlespacing*{\section}{-4mm}{5mm}{3mm} 
+\titleformat{\section}[hang]
+   {\LARGE\bf\sffamily\color{SteelBlue!60!Black}}
+   {\tcbox[colback=SteelBlue!60!Black,colframe=Gold,coltext=white,on line,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt]{\thesection}}
+   {10pt}
+   {}
+
+% Environnements du cours
+\tcbset{frame/.style={enhanced,breakable,sharp corners,before skip=5mm,left skip =4mm,after skip=5mm,
+   toprule=0pt,rightrule=0pt,bottomrule=0pt,leftrule=1mm,
+   colback=#1!10,colframe=#1!80!black,coltitle=#1!50!black, 
+   detach title,overlay unbroken and first ={\node[rotate=90,minimum width=1cm,anchor=south,font=\sffamily] at (frame.west) {\tcbtitle};}}}
+   
+\newtcbtheorem{definition}{Définition}{frame=red}{de}
+\newtcbtheorem{propriete}{Propriété}{frame=green}{pr}
+\newtcbtheorem{exemple}{Exemple}{frame=white}{ex}
+\newtcbtheorem{methode}{Méthode}{frame=cyan}{me}
+\newtcolorbox{exmethode}{skin=bicolor,sidebyside,title=Exemple,colback=white,colbacklower=cyan!5,colframe=cyan!5,attach boxed title to top left={xshift=5mm,yshift=-3mm},boxed title style={size=small,colback=cyan!5},top=3mm,fonttitle=\black}
+\newtcolorbox{exbmethode}{skin=bicolor,title=Exemple,colback=white,colbacklower=cyan!5,colframe=cyan!5,attach boxed title to top left={xshift=5mm,yshift=-3mm},boxed title style={size=small,colback=cyan!5},top=3mm,fonttitle=\black}
+
+
+%%% Format de la page "exercices" %%%
+
+% En-tête de l'environnement "exercices"
+\setKVdefault[Fiche]{Theme={},Date={},Niveau={},Vertical=false,Couleur=DarkRed}
+
+\tcbset{userfiche/.style={%
+   enhanced,colback=white,frame hidden,
+   overlay unbroken and first={%
+      \node[anchor=center,inner sep=0pt] at (frame.center) {\mplibforcehmode
+         \begin{mplibcode}
+            fill (0,0)--(10cm,0cm)--(10cm,1.2cm)--(0,1.2cm)--cycle withcolor \useKV[Fiche]{Couleur};
+            path SquareND;
+            for j=0 upto 4:
+               for k=0 upto j:
+                  SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((8.995cm,0)+2mm*(j,k));
+                  fill SquareND withcolor (0.2*(j-k+1))[\useKV[Fiche]{Couleur},white];
+                  trace SquareND withcolor (0.2*(j-k+1))[\useKV[Fiche]{Couleur},white];
+               endfor;
+            endfor;
+            for j=0 upto 4:
+               for k=0 upto 4-j:
+                  SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((0.05mm,0)+2mm*(j,k));
+                  fill SquareND withcolor (0.2*(j+k))[white,\useKV[Fiche]{Couleur}];
+                  trace SquareND withcolor (0.2*(j+k))[white,\useKV[Fiche]{Couleur}];
+               endfor;
+            endfor;   
+         \end{mplibcode}};
+      \node at (frame.center) {\color{white} \huge\sffamily\bfseries Fiche d'exercices};}}}
+
+\RenewDocumentCommand\TikzFiche{}{%
+   \clearpage
+   \begin{tcolorbox}[userfiche]%
+   \end{tcolorbox}%
+   \vskip8mm}
+
+% Formatage des exercices
+\setKVdefault[ClesExercices]{SLF=false,Dur=false,Tout=false}%
+
+\tcbset{tikzfiche/.style={%
+   before skip=4mm,left skip=1mm,
+   enhanced,breakable,
+   left=2.5mm,right=2mm,top=2mm,bottom=2mm,
+   colback=white,colframe=PfMCadreFiche,
+   overlay unbroken and first={%4
+      \node[fill=DarkRed,anchor=center,yshift=-5mm] at (frame.north west){\bfseries\sffamily\white \thePfMExo}; 
+      \ifboolKV[ClesExercices]{Dur}{\node[anchor=center,yshift=-13mm,xshift=0.25mm,scale=2.5] at (frame.north west) {\twemoji{alien monster}};}{} %\bcbombe %warning %hammer and wrench %alien monster
+      \ifboolKV[ClesExercices]{SLF}{\node[anchor=center,yshift=-13mm,scale=2.5] at (frame.north west) {\twemoji{feather}};}{}  %ding{47} %pen
+      \ifboolKV[ClesExercices]{Tout}{\node[anchor=center,yshift=-13mm,scale=2.5] at (frame.north west) {\twemoji{feather}};\node[anchor=center,yshift=-21mm,xshift=0.25mm,,scale=2.5] at (frame.north west) {\twemoji{alien monster}};}{}
+   }%
+}}%
+
+% Multi-colonnage numéroté
+\NewDocumentEnvironment{colenumerate}{O{2}+b}{%
+  \begin{multicols}{#1}
+    \begin{enumerate}
+      #2
+    \end{enumerate}
+  \end{multicols}}
+
+% En-tête de l'environnement "correction des exercices"
+\tcbset{userfichecor/.style={%
+   enhanced,colback=white,frame hidden,
+   overlay unbroken and first={%
+      \node[anchor=center,inner sep=0pt] at (frame.center) {\mplibforcehmode
+      \begin{mplibcode}
+         fill (0,0)--(10cm,0cm)--(10cm,1.2cm)--(0,1.2cm)--cycle withcolor \useKV[Fiche]{Couleur};
+         path SquareND;
+         for j=0 upto 4:
+            for k=0 upto j:
+               SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((8.995cm,0)+2mm*(j,k));
+               fill SquareND withcolor (0.2*(j-k+1))[\useKV[Fiche]{Couleur},white];
+               trace SquareND withcolor (0.2*(j-k+1))[\useKV[Fiche]{Couleur},white];
+            endfor;
+         endfor;
+         for j=0 upto 4:
+            for k=0 upto 4-j:
+               SquareND:=polygone((2mm,0),(2mm,2mm),(0,2mm),(0,0)) shifted((0.05mm,0)+2mm*(j,k));
+               fill SquareND withcolor (0.2*(j+k))[white,\useKV[Fiche]{Couleur}];
+               trace SquareND withcolor (0.2*(j+k))[white,\useKV[Fiche]{Couleur}];
+            endfor;
+         endfor;   
+      \end{mplibcode}};
+      \node at (frame.center) {\color{white} \huge\sffamily\bfseries Correction des exos};
+   }%
+}}%     
+
+\RenewDocumentCommand\TikzFicheCor{m}{%
+   \clearpage
+   \begin{tcolorbox}[userfichecor]%
+   \end{tcolorbox}%
+   \vskip5mm}
+
+% Formatage des exercices corrigés
+\RenewDocumentCommand\PfMAffichageCorrige{}{%
+   \xintFor* ##1 in{\xintSeq{1}{\thePfMExo}}\do{%
+      \setcounter{PfMExoSol}{##1}%
+      \setcounter{PfMAlea}{0}%
+      \IfFileExists{\jobname-Ex##1.sol}{\textcolor{DarkRed}{\bfseries\sffamily Exercice ##1}\par\nopagebreak\input{\jobname-Ex##1.sol}\par\goodbreak\vskip3mm}{\IfFileExists{\jobname-Ex##1.rep}{\textbf{Réponse(s) seule(s) de l'exercice ##1}\par\nopagebreak\input{\jobname-Ex##1.rep}\par\goodbreak}{%
+         \IfFileExists{\jobname-Ex##1.cdp}{\textbf{Indice(s) pour l'exercice ##1}\par\nopagebreak\input{\jobname-Ex##1.cdp}\par\goodbreak}{}}}}}
+
+% Couleur du résultat
+\newcommand{\cor}[1]{\textcolor{RoyalBlue}{#1}}
+
+
+%%% Format de la page "activité récréative" %%%
+
+% Titres
+\newcommand{\ARtitre}[1]{\medskip\begin{center} \Large\bf\textcolor{Salmon}{#1} \end{center}}
+\newcommand{\ARpartie}[1]{\medskip \textcolor{Salmon}{\large\bf #1} \par}
+
+
+%%% Macros ponctuelles
+
+% S03 : En route pour la programmation
+% Fourmi de Langton
+\newcommand{\cub}{\psframe[fillstyle=solid,fillcolor=black](0,0)(1,1)}
+\newcommand{\fourmi}[3]{\rput{#3}(#1,#2){\psdot[linecolor=red,dotstyle=triangle*,linewidth=1mm](0,0)}}
+% Grille des dominos
+\newcommand{\cn}{\psframe[fillstyle=solid,fillcolor=black](0,0)(1,1)}
+\newcommand{\ho}{\includegraphics[width=0.3cm]{Hercule}}
+\newcommand{\po}{\includegraphics[width=0.3cm]{pommier}}
+% Déplacement des dominos
+\newcommand{\dep}{\pspolygon[fillstyle=solid,fillcolor=orange](6,1)(0,1)(0,0)(1,0)(1.25,-0.25)(1.5,0)(6.5,0)(6.5,0.5) \pswedge[fillstyle=solid,fillcolor=orange,linecolor=orange](6,0.5){0.5}{0}{90} \psarc(6,0.5){0.5}{0}{90} \put(0.5,0.3){\footnotesize Démarre}}
+\newcommand{\av}[1]{\pspolygon[fillstyle=solid,fillcolor=green](0,0)(1,0)(1.25,-0.25)(1.5,0)(6.5,0)(6.5,1)(1.5,1)(1.25,0.75)(1,1)(0,1) \put(0.5,0.3){\footnotesize Avance de #1}}
+\newcommand{\tg}{\pspolygon[fillstyle=solid,fillcolor=yellow](0,0)(1,0)(1.25,-0.25)(1.5,0)(6.5,0)(6.5,1)(1.5,1)(1.25,0.75)(1,1)(0,1) \put(0.5,0.3){\footnotesize Tourne à gauche}}
+\newcommand{\td}{\pspolygon[fillstyle=solid,fillcolor=pink](0,0)(1,0)(1.25,-0.25)(1.5,0)(6.5,0)(6.5,1)(1.5,1)(1.25,0.75)(1,1)(0,1) \put(0.5,0.3){\footnotesize Tourne à droite}}
+\newcommand{\fin}{\pspolygon[fillstyle=solid,fillcolor=orange](0,0)(6,0)(6.5,0.5)(6.5,1)(1.5,1)(1.25,0.75)(1,1)(0,1)(0,0) \pswedge[fillstyle=solid,fillcolor=orange,linecolor=orange](6,0.5){0.5}{-90}{0} \psarc(6,0.5){0.5}{-90}{0} \put(0.5,0.3){\footnotesize Prends les pommes}}
+
+% S04 : Nombres relatifs
+% Thermomètre
+\def\thermo{\pspolygon[linearc=0.1,fillstyle=solid](-0.1,6.8)(-0.1,0.6)(-0.2,0.4)(-0.2,-0.1)(0.2,-0.1)(0.2,0.4)(0.1,0.6)(0.1,6.8) \pspolygon[linecolor=Crimson, linearc=0.1, fillstyle=solid, fillcolor=Crimson](0,4.7)(0,0.5)(-0.1,0.3)(-0.1,0)(0.1,0)(0.1,0.3)(0,0.5) \pscircle(0,6.7){0.05}}
+
+% S09 : Horaires et durées
+% Horloge de Mengenlehreuhr
+\newcommand{\horloge}{\psset{fillstyle=none,linecolor=lightgray,linewidth=1.5mm}
+   \multido{\n=0.0+2.8,\r=2.0+2.8}{4}{\psframe(0,\n)(11,\r)} %frames
+   \multido{\n=2.75+2.75}{3}{\psline(\n,0)(\n,2)}
+   \multido{\n=1+1}{10}{\psline(\n,2.8)(\n,4.8)}
+   \multido{\n=2.75+2.75}{3}{\psline(\n,5.6)(\n,7.6)}
+   \multido{\n=2.75+2.75}{3}{\psline(\n,8.4)(\n,10.4)}
+   \pscircle(5.5,12.54){1.6}
+   \multido{\n=2.4+2.8}{3}{\psarc(1.25,\n){0.4}{-90}{90}
+      \psarc(4.25,\n){0.4}{90}{-90}
+      \psline[linewidth=3mm](1.5,\n)(4,\n)
+      \psarc(6.75,\n){0.4}{-90}{90}
+      \psarc(9.75,\n){0.4}{90}{-90}
+      \psline[linewidth=3mm](7,\n)(9.5,\n)}
+   \psarc(4.75,10.75){0.35}{-90}{90}
+   \psline[linewidth=2.5mm](5.1,10.75)(5.9,10.75)
+   \psarc(6.25,10.75){0.35}{90}{-90}}
+
+% S10 : Comparaison et égalité de fractions
+% Grille ini-combis
+\newcommand{\Combis}[1]{{\psset{unit=0.5}
+   \begin{pspicture}(0,0)(8.9,6)
+      \psgrid[subgriddiv=0,gridcolor=Grey,gridlabels=0](0,0)(6,6)
+      #1
+   \end{pspicture}}}
+% Pièce mini-combis  
+\newcommand{\piece}[4]{\rput(#1,#2){\psframe[linewidth=0.6mm,fillstyle=solid,fillcolor=WhiteSmoke](0,0)(#3,#4)}}
+% Grille remplie
+\newcommand{\Combisentier}[1]{{\psset{unit=0.5}
+   \begin{pspicture}(0,0)(9,6)
+      \piece{0}{0}{1}{1}
+      \piece{0}{1}{2}{1}
+      \piece{0}{2}{2}{2}
+      \piece{0}{4}{1}{2}
+      \piece{1}{0}{2}{1}
+      \piece{1}{4}{1}{1}
+      \piece{1}{5}{2}{1}
+      \piece{2}{1}{1}{2}
+      \piece{2}{3}{2}{2}
+      \piece{3}{0}{2}{2}
+      \piece{3}{2}{2}{1}
+      \piece{3}{5}{1}{1}
+      \piece{4}{3}{2}{1}
+      \piece{4}{4}{2}{2}
+      \piece{5}{0}{1}{1}
+      \piece{5}{1}{1}{2}
+      #1
+   \end{pspicture}}}
+% Pièce solution
+\newcommand{\piecesol}[4]{\rput(#1,#2){\psframe[linewidth=0.6mm,fillstyle=solid,fillcolor=RoyalBlue!70](0,0)(#3,#4)}}
+
+% 11 : Symétrie centrale
+% Hexagones
+\newcommand{\hexa}[2]{\pspolygon[fillstyle=solid,fillcolor=#2](#1;0)(#1;60)(#1;120)(#1;180)(#1;-120)(#1;-60)}
+  
+% S12 : Notions de probabilités
+% Sac de billes
+\newcommand{\sac}[1]{\begin{pspicture}(-0.5,-0.5)(2,2)
+   \psline(0,0)(0,1.5)
+   \psline(1.5,0)(1.5,1.5)
+   \psellipse(0.75,1.5)(0.75,0.25)
+   \psellipticarc(0.75,0)(0.75,0.4){180}{0}
+   #1
+\end{pspicture}}
+
+% S13 : Expressiosn littérales
+% Défis !!!
+\def\croix{\psframe(0,-1)(1,2) \psframe(-1,-0)(2,1)}
+\def\carre{\psframe(0,0)(1,1)}
+
+% S14 : Reconnaître des solides
+% Table
+\newcommand{\cone}{\pspolygon[fillstyle=solid,fillcolor=white](0,0)(0.9,0)(0.45,1.7)}
+\newcommand{\boule}{\pscircle[fillstyle=solid,fillcolor=white](0,0.45){0.45}}
+\newcommand{\cube}{\psframe[fillstyle=solid,fillcolor=white](0,0)(1.15,0.9)\psline(0.75,0)(0.75,0.9)}
+\newcommand{\cubeg}{\psframe[fillstyle=solid,fillcolor=white](0,0)(1.15,0.9)\psline(0.4,0)(0.4,0.9)}
+
+% S15 : Périmètre et aire
+% Curvica
+\newcommand{\vg}{\psarc(3,0){2.24}{153.4}{-153.4}}
+\newcommand{\vm}{\psline(1,-1)(1,1)}
+\newcommand{\vd}{\psarc(-1,0){2.24}{-26.6}{26.6}}
+\newcommand{\hb}{\psarc(0,3){2.24}{-116.6}{-63.4}}
+\newcommand{\hm}{\psline(-1,1)(1,1)}
+\newcommand{\hh}{\psarc(0,-1){2.24}{63.4}{116.6}}
+\newcommand{\curvica}[5]{\rput(#1,#2){#3} \rput(#1,#2){#4} \rput(#1,#2){\large #5}} 
+
+% S17 : Inégalité triangulaire
+% Outils de géométrie
+\newcommand{\compas}[5] %compas
+   {\psset{fillstyle=solid,fillcolor=gray!20}
+    \scalebox{#4}
+      {\rput{#3}(#1,#2)      
+         {\psframe(-0.1,3.6)(0.1,4)
+          \rput{-#5}(-0.1,3){\psframe(-0.1,-2.4)(0.1,0.1)
+                                     \psline[fillcolor=gray!60](-0.05,-2.4)(0,-3)(0.05,-2.4)}
+          \rput{#5}(0.1,3){\psframe(-0.1,-2.4)(0.1,0.1)
+                                  \pspolygon[fillcolor=gray](-0.05,-2.4)(-0.05,-2.95)(0.05,-2.7)(0.05,-2.4)}
+          \psframe[fillcolor=gray!40](-0.25,3)(0.25,3.6)
+          \pscircle(0,3.3){0.1}}}}
+   
+\newcommand{\rapporteur}[4] 
+   {\scalebox{#4}
+      {\rput{#3}(#1,#2)           
+          {\psarc(0,0){3.75}{0}{180} 
+           \psline(-3.75,0)(-3.75,-0.75)(3.75,-0.75)(3.75,0)
+           \psarc(0,0){2.5}{0}{180}
+           \psline(-2.5,0)(-0.5,0)
+           \psarc(0,0){0.5}{0}{180}
+           \psline(0.5,0)(2.5,0) 
+           \psline(-0.1,0)(0.1,0) 
+           \psline(0,-0.1)(0,0.1)   
+           \multido{\i=0+1}{180}{\psline(3.55;\i)(3.75;\i)}
+           \multido{\i=0+10}{19}{\psline(3.4;\i)(3.75;\i)}  
+           \multido{\i=0+5}{36}{\psline(3.45;\i)(3.75;\i)}           
+           \multido{\i=0+10}{19}{\psline(2.7;\i)(2.5;\i)}
+           \multido{\i=0+5}{36}{\psline(2.6;\i)(2.5;\i)}
+           \multido{\i=0+10}{19}{\uput[\i](2.9;\i){\tiny{\i}}}
+           \multido{\i=180+-10,\I=0+10}{19}{\uput[\i](2.5;\i){\tiny{\I}}}}}}
+
+% Pièces du tangram
+\def\pt{\psset{unit=4.24}\pspolygon(0,0)(1,0)(1,1)} 
+\def\mt{\psset{unit=1.415}\pt} 
+\def\gt{\psset{unit=2}\pt}  
+\def\ca{\psset{unit=4.24}\psframe(0,0)(1,1)}
+\def\pa{\psset{unit=3}\pspolygon(0,0)(-2,0)(-3,1)(-1,1)}
+\def\pas{\psset{unit=3}\pspolygon(0,0)(-2,0)(-3,-1)(-1,-1)}
+
+% Pièces du tangram avec mesures
+\def\ptm{\psset{unit=4.24,PointName=none,PointSymbol=none,LabelSep=0.4,RightAngleSize=0.2,MarkAngleRadius=0.2}
+   \pstTriangle(0,0){A}(1,0){B}(1,1){C}
+   \pstRightAngle[linecolor=RoyalBlue]{C}{B}{A}
+   \pstMarkAngle[linecolor=RoyalBlue]{A}{C}{B}{\cor{\ang{45}}}
+   \pstMarkAngle[linecolor=RoyalBlue]{B}{A}{C}{\cor{\ang{45}}}} 
+\def\mtm{\psset{unit=1.415}\ptm} 
+\def\gtm{\psset{unit=2}\ptm} 
+\def\cam{\psset{unit=4.24}
+   \psframe(0,0)(1,1)
+   \psframe[linecolor=RoyalBlue](0,0)(0.15,0.15)
+   \psframe[linecolor=RoyalBlue](0.85,0)(1,0.15)
+   \psframe[linecolor=RoyalBlue](0.85,0.8)(1,1)
+   \psframe[linecolor=RoyalBlue](0,0.85)(0.15,1)}
+\def\pam{\psset{unit=3,PointName=none,PointSymbol=none,LabelSep=0.4,MarkAngleRadius=0.2}
+   \pstGeonode[CurveType=polygon](0,0){A}(-2,0){B}(-3,1){C}(-1,1){D}
+   \pstMarkAngle[linecolor=RoyalBlue]{B}{C}{D}{\cor{\ang{45}}}
+   \pstMarkAngle[linecolor=RoyalBlue]{C}{D}{A}{\cor{\ang{135}}}
+   \pstMarkAngle[linecolor=RoyalBlue]{D}{A}{B}{\cor{\ang{45}}}
+   \pstMarkAngle[linecolor=RoyalBlue]{A}{B}{C}{\cor{\ang{135}}}}
+\def\pasm{\psset{unit=3}\pspolygon(0,0)(-2,0)(-3,-1)(-1,-1)}
+
+% S23 : Représenter le pavé et le cylindre
+% patrons de cubes
+\def\face#1#2{\rput(#1,#2){\psframe(0,0)(1,1)}}
+\def\facec#1#2{\rput(#1,#2){\psframe[fillstyle=solid,fillcolor=lightgray](0,0)(1,1)}}
+\def\facer#1#2{\rput(#1,#2){\psframe[linecolor=Crimson](0,0)(1,1)}}
+
+% cube isométrique
+\newcommand{\cubiso}[2]     
+   {\rput(#1,#2) 
+      {\psset{fillstyle=solid}
+       \pspolygon[fillcolor=Crimson](0,0)(2;90)(2;30)(2;-30)
+       \pspolygon[fillcolor=DodgerBlue](2;-30)(3.464;0)(4;30)(2;30)
+       \pspolygon[fillcolor=ForestGreen](2;90)(2;30)(4;30)(3.464;60)}}
+
+% S25 : Distributivité simple et égalités
+% puzzle
+\newcommand{\tri}[3]{\pspolygon(0,0)(2,0)(2;60) \rput(1,0.25){$#1$} \rput{-120}(0.7,0.8){$#2$} \rput{120}(1.3,0.8){$#3$}}
+\newcommand{\car}[4]{\psframe(0,0)(2,2) \rput(1,0.2){$#1$} \rput{90}(1.8,1){$#2$} \rput{180}(1,1.8){$#3$} \rput{-90}(0.2,1){$#4$}}
+
+% S28 : Propriétés des symétries
+% cocottes
+\def\cocottea{\pspolygon(0,0)(0.5,0)(0.75,0.25)(1,0)(1,0.5)(0.75,0.75)(1,1)(0.5,1)(0.5,0.5)}
+\def\cocotteb{\pspolygon[fillstyle=solid,fillcolor=lightgray](0,0)(0.5,0)(0.75,0.25)(1,0)(1,0.5)(0.75,0.75)(1,1)(0.5,1)(0.5,0.5)}
+\def\cocottec{\pspolygon[fillstyle=solid,fillcolor=lightgray](0,0)(-0.5,0)(-0.75,0.25)(-1,0)(-1,0.5)(-0.75,.75)(-1,1)(-0.5,1)(-0.5,0.5)}   
+\newcommand{\Syst}[2]{\renewcommand{\arraystretch}{1}\left\{\begin{array}{ccccc} #1\\ #2 \end{array}\right.}

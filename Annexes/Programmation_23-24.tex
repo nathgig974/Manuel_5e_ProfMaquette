@@ -1,0 +1,79 @@
+\theme
+
+% Commandes de placement des séquences
+\newcommand\nc[2]{\rput(3,#1){\begin{minipage}{7cm} \centering\textcolor{Crimson}{#2}\end{minipage}}}
+\newcommand\eg[2]{\rput(9,#1){\begin{minipage}{6cm}\centering\textcolor{DodgerBlue}{#2}\end{minipage}}}
+\newcommand\gm[2]{\rput(15,#1){\begin{minipage}{7cm}\centering\textcolor{ForestGreen}{#2}\end{minipage}}}
+\newcommand\ogd[2]{\rput(15,#1){\begin{minipage}{6cm}\centering\textcolor{DarkViolet}{#2}\end{minipage}}}
+\newcommand\ap[2]{\rput(15,#1){\begin{minipage}{6cm}\centering\textcolor{DarkOrange}{#2}\end{minipage}}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+% Début du fichier
+\begin{center}
+   \textsf{\huge PROGRAMMATION}
+\end{center}
+
+\bigskip
+
+{\psset{xunit=1,yunit=0.68}
+\begin{pspicture}(-0.5,0)(18,36)
+   \rput(0.85,35){\includegraphics[width=1cm]{Images/nc}}
+   \nc{35}{\bf Nombres \& calculs}
+   \rput(6.8,35){\includegraphics[width=1cm]{Images/eg}}
+   \eg{35}{\bf Espace \& géométrie}
+   \rput(18.3,35){\includegraphics[width=1cm]{Images/ogd}}
+   \ogd{35.4}{\bf Organisation, gestion de données}
+   \rput(11.65,35){\includegraphics[width=1cm]{Images/gm}}
+   \gm{34.7}{\bf Grandeurs \& mesures}
+   \multido{\n=0+1}{35}{\psline[linestyle=dotted,linecolor=gray](0,\n)(18,\n)}
+   \psline(-1,34)(18,34)
+   \rput{90}(-0.5,30.5){Période 1}
+   \psline(-1,27)(18,27)
+   \rput{90}(-0.5,23.5){Période 2}
+   \psline(-1,20)(18,20)
+   \rput{90}(-0.5,17.5){Période 3}
+   \psline(-1,15)(18,15)
+   \rput{90}(-0.5,12){Période 4}
+   \psline(-1,9)(18,9)
+   \rput{90}(-0.5,4){Période 5}
+   \psline(-1,-1)(18,-1)
+   %%%%%%%%% P1
+   \nc{33.5}{\circled{1} Enchaînement d'opérations}
+   \eg{32.5}{\circled{2} Angles particuliers}
+   \ap{31.5}{\circled{3} En route vers la programmation}
+   \nc{30.5}{\circled{4} Les nombres relatifs}
+   \rput(9,29.5){\it\gray Semaine de rattrapage des séquences 1 à 4}
+   \eg{28.5}{\circled{5} Repérage dans le plan}
+   \ogd{27.5}{\circled{6} Effectifs, fréquences et moyenne}
+   %%%%%%%%% P2
+   \nc{26.5}{\circled{7} Multiples et diviseurs}
+   \eg{25.5}{\circled{8} Somme des angles d'un triangle}
+   \rput(9,24.5){\it\gray Semaine de rattrapage des séquences 5 à 8}
+   \gm{23.5}{\circled{9} Horaires et durées}
+   \nc{22.5}{\circled{10} Comparaison et égalité de fractions}
+   \eg{21.5}{\circled{11} La symétrie centrale}
+   \ogd{20.5}{\circled{12} Notions de probabilités}
+   %%%%%%%%% P3
+   \rput(9,19.5){\it\gray Semaine de rattrapage des séquences 9 à 12}
+   \nc{18.5}{\circled{13} Expressions littérales}
+   \eg{17.5}{\circled{14} Reconnaître des solides}
+   \gm{16.5}{\circled{15} Aires et périmètres}
+   \nc{15.5}{\circled{16} Calculs avec des nombres relatifs}
+   %%%%%%%%% P4 
+   \rput(9,14.5){\it\gray Semaine de rattrapage des séquences 13 à 16}
+   \eg{13.5}{\circled{17} L'inégalité triangulaire}
+   \ogd{12.5}{\circled{18} Le ratio}
+   \nc{11.5}{\circled{19} Les nombres premiers}
+   \eg{10.5}{\circled{20} Le parallélogramme}
+   \rput(9,9.5){\it\gray Semaine de rattrapage des séquences 17 à 20}
+   %%%%%%%%% P5
+   \gm{8.5}{\circled{21} Volume du pavé, du prisme et du cylindre}
+   \nc{7.5}{\circled{22} Calculs avec des fractions}
+   \eg{6.17}{\circled{23} Représenter le pavé et le cylindre}
+   \ogd{4.83}{\circled{24} La proportionnalité}
+   \rput(9,3.5){\it\gray Semaine de rattrapage des séquences 21 à 24}
+   \nc{2.5}{\circled{25} Distributivité simple et égalités}
+   \eg{1.5}{\circled{26} Hauteurs et médiatrices du triangle}
+   \gm{0.5}{\circled{27} L'aire du parallélogramme}
+   \gm{-0.5}{\circled{28} Propriétés des symétries}
+\end{pspicture}}

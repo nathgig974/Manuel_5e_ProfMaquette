@@ -1,0 +1,497 @@
+\graphicspath{{../../S15_Perimetre_et_aire/Images/}}
+
+\themeM
+\chapter{Aires et périmètres}
+\label{S15}
+
+\textcolor{teal}{\bf Compétences :}
+   \begin{competences}
+      \item Mener des calculs impliquant des grandeurs mesurables, exprimer les résultats dans les unités adaptées.
+      \item Vérifier la cohérence des résultats des unités.
+      \item Effectuer des conversions d’unités.
+   \end{competences}
+
+\vfill
+
+\begin{debat}{Débat : Haïku}
+   Un {\bf haïku} est un petit poème traditionnel japonais, de forme très concise (dix-sept syllabes en trois vers : 5-7-5 ou 7-5-5 ou 5-5-7). {\it Richard Cauche} est enseignant de mathématiques et membre de l’IREM de Paris. Il nous fait partager ces haïkus mathématiques sur le périmètre et l'aire du disque :
+   \tcblower
+      \includegraphics[height=6cm]{circonference}
+      \hspace{10mm}
+      \includegraphics[height=6cm]{surface}
+\end{debat}
+
+\hfill {\gray Vidéo 1 : \href{https://www.youtube.com/watch?v=TcNfC8b4hUg}{\bf Archimède et le nombre $\pi$}, chaîne YouTube {\it m@ths et tiques}, Yvan Monka}. \par
+\hfill {\gray Vidéo 2 : \href{https://www.youtube.com/watch?v=TdwteXrJsVU}{\bf Les aires}, chaîne YouTube {\it Rapématiques}, A'Rieka}.
+
+
+%%% Approche %%%
+\begin{Maquette}[Cours]{Theme={Activité d'approche},Couleur={SteelBlue}}
+
+   \AAtitre{Le curvica}
+
+      {\it Objectifs : différencier périmètre et aire ; comparer des périmètres et des aires sans utiliser la mesure.}
+
+      \begin{AActivite}
+
+         Le curvica est un jeu-puzzle de 24 pièces inventé par {\bf Jean Fromentin} en 1982 aﬁn de travailler sur les notions de périmètre, d’aire et de symétrie, entre autres ! À partir d’un carré, on obtient une pièce du puzzle curvica en \og creusant \fg, en \og bombant \fg ou en laissant droits les côtés. Les arcs produits sont tous identiques.
+         \begin{center}
+            \begin{pspicture}(0,0)(12,8)
+               \psline(0,8)(0,0)(12,0)
+               \curvica{1}{1}{\hm}{\vg}{K} \curvica{3}{1}{\hm}{\vd}{T} \curvica{5}{1}{\hb}{\vd}{W} \curvica{7}{1}{\hh}{\vg}{V} \curvica{9}{1}{\hb}{\vd}{N} \curvica{11}{1}{\hb}{\vm}{E} %ligne 1
+               \curvica{1}{3}{\hb}{\vd}{H} \curvica{3}{3}{\hm}{\vd}{F} \curvica{5}{3}{\hb}{\vg}{R} \curvica{7}{3}{\hb}{\vd}{L} \curvica{9}{3}{\hh}{\vd}{C} \curvica{11}{3}{\hb}{\vm}{X} %ligne 2
+               \curvica{1}{5}{\hm}{\vd}{U} \curvica{3}{5}{\hm}{\vg}{D} \curvica{5}{5}{\hh}{\vd}{A} \curvica{7}{5}{\hb}{\vd}{M} \curvica{9}{5}{\hb}{\vg}{Q} \curvica{11}{5}{\hb}{\vm}{O} %ligne 3
+               \curvica{1}{7}{\hm}{\vm}{I} \curvica{3}{7}{\hm}{\vd}{J} \curvica{5}{7}{\hm}{\vg}{S} \curvica{7}{7}{\hm}{\vg}{P} \curvica{9}{7}{\hm}{\vd}{B} \curvica{11}{7}{\hm}{\vm}{G} %ligne 4
+            \end{pspicture}
+         \end{center} 
+         \begin{spacing}{1.9}
+            \begin{enumerate}
+               \item On s’intéresse uniquement aux pièces A, B, C, D, E et F que l'on pourra colorier.
+                  \begin{enumerate}
+                     \item Classer ces six pièces du plus petit au plus grand périmètre. \pointilles
+                     \item Classer ces six pièces de la plus petite à la plus grande aire. \pointilles
+                     \item Quelles sont les deux pièces qui ont la même aire et le même périmètre ? \pointilles
+                     \item Trouver deux pièces qui ont le même périmètre, mais des aires différentes. \pointilles 
+                  \end{enumerate}
+               \item On s'intéresse maintenant à toutes les pièces.
+                  \begin{enumerate}
+                     \item Y a-t-il une unique pièce d’aire minimale ? \pointilles
+                     \item Y a-t-il une unique pièce de périmètre minimum ? \pointilles             
+                     \item Y a-t-il une unique pièce d’aire maximale ? \pointilles           
+                     \item Y a-t-il une unique pièce de périmètre maximum ? \pointilles         
+                     \item Y a-t-il une ou des pièces de même aire que la carré I ? \pointilles
+                     \item Y a-t-il une ou des pièces de même périmètre que la carré I ? \pointilles
+                  \end{enumerate}
+            \end{enumerate}
+            \vskip-10mm
+         \end{spacing}
+
+      \end{AActivite}
+
+   \vfill\hfill{\it\footnotesize Source : d'après \href{https://irem.univ-reunion.fr/spip.php?article802}{\og Curvica - activités mathématiques ludiques \fg}, Yves Martin, IREM de la Réunion.}
+
+\end{Maquette}
+
+
+%%%Trace écrite %%%
+\begin{Maquette}[Cours]{Theme={Trace écrite},Couleur={0.4[SteelBlue,Black]}}
+
+   %%%1
+   \section{Périmètres et aires usuelles}
+
+      $\bullet$ Le périmètre d'un polygone est la somme des longueurs des segments qui le compose ; \\
+      $\bullet$ la circonférence d'un cercle de rayon $r$ se calcule grâce à la formule $\mathcal{p} =2\times\pi\times r$. \medskip
+
+      Pour les aires, on a les formules suivantes : \par
+      \begin{minipage}[t]{5.5cm}
+         \Formule[Aire,Surface=rectangle,Ancre={(2.5,-2)},Couleur=yellow!10]
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{6cm}
+         \Formule[Aire,Surface=triangle,Ancre={(2.5,-2)},Couleur=yellow!10]
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{6cm}
+         \Formule[Aire,Surface=disque,Ancre={(2.5,-2)},Couleur=yellow!10]
+      \end{minipage}
+
+      \vskip4cm
+
+      \begin{minipage}[t]{5.5cm}
+         \begin{exemple*}{}
+            Aire d'un rectangle de longueur \Lg[dm]{0,3} et de largeur \Lg[dm]{0,2} : \par \smallskip
+            $\Lg[dm]{0,3}\times\Lg[dm]{0,2} =\Aire[dm]{0,06}$
+         \end{exemple*}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{6cm}
+         \begin{exemple*}{}
+            Aire d'un triangle de base \Lg[mm]{28} et de hauteur relative \Lg[mm]{13} : \par \medskip
+            $\dfrac{\Lg[mm]{28}\times\Lg[mm]{13}}{2} =\Aire[mm]{182}$
+         \end{exemple*}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{6cm}
+         \begin{exemple*}{}
+            Aire et périmètre d'un disque de rayon \Lg{1,2} : \par \smallskip
+            $\mathcal{A} =\pi\times(\Lg{1,2})^2\approx\Aire{4,52}$. \par
+            $\mathcal{P} =2\times\pi\times\Lg{1,2}\approx\Lg{7,54}$
+         \end{exemple*}
+      \end{minipage}
+
+      \bigskip
+
+      Remarque : pour calculer l'aire d'une figure complexe, il suffit de la \og découper \fg{} en figures usuelles et d'additionner ou de soustraire les aires qui la constituent.
+
+
+   %%%2  
+   \section{Conversions}
+
+      On peut mesurer une longueur grâce au mètre (m) et ses multiples et sous-multiples :
+
+      \Tableau[Metre,FlechesH]{7321/3}
+      \vspace*{-10mm}
+
+      \begin{exemple*}{}
+         $\Lg[km]{0,07321} =\Lg[hm]{0,7321} =\Lg[dam]{7,321} =\Lg[m]{73,21} =\Lg[dm]{732,1} =\Lg{7321} =\Lg[mm]{73210}$. 
+      \end{exemple*}
+
+      L'aire est une grandeur composée, correspondant au produit de deux longueurs. Chaque unité d'aire dans le tableau comporte donc deux colonnes. Pour désigner une aire, on utilise le mètre carré (\Aire[m]{}) et ses multiples et sous-multiples. \par
+      Pour les mesures agraires, on utilise l'are (a) qui équivaut à \Aire[m]{100} et l'hectare (ha) qui vaut 100 ares. \smallskip
+
+      \Tableau[Carre,Colonnes,Are,FlechesH]{3701/4}
+      \vspace*{-10mm}
+
+      \begin{exemple*}{}
+         \Aire[km]{0,03701} =\Aire[hm]{3,701} =3,701\text{ ha} =\Aire[dam]{370,1} =\Aire[m]{37010} =370,1\text{ a}  =\Aire[dm]{3701000}\dots
+      \end{exemple*}
+
+\end{Maquette}
+
+
+%%% Exercices %%%
+\begin{Maquette}[Fiche,CorrigeFin,Colonnes=2]{}
+   
+   \begin{multicols}{2}
+
+         \begin{exercice}[SLF] %1
+            Effectuer les conversions de longueurs suivantes :
+            \begin{enumerate}
+               \item $\Lg[m]{1275} =\pointilles \Lg{}$
+               \item $\Lg[dm]{32,5} =\pointilles \Lg[dam]{}$
+               \item $\Lg{345697,34} =\pointilles \Lg[km]{}$
+               \item $\Lg[km]{2,5} =\pointilles \Lg[m]{}$
+            \end{enumerate}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item $\Lg[m]{1275} =\cor{\Lg{127500}}$
+               \item $\Lg[dm]{32,5} =\cor{\Lg[dam]{0,325}}$
+               \item $\Lg{345697,34} =\cor{\Lg[km]{3,4569734}}$
+               \item $\Lg[km]{2,5} =\cor{\Lg[m]{2500}}$
+            \end{enumerate}
+         \end{Solution}
+         
+         
+         \begin{exercice}[SLF] %2
+            Effectuer les conversions d'aires suivantes :
+            \begin{enumerate}
+               \item $\Aire[dm]{32,5} =\pointilles\Aire[dam]{}$
+               \item $\Aire{345697,34} =\pointilles\Aire[m]{}$
+               \item $\Aire[m]{0,003} =\pointilles\Aire[mm]{}$
+               \item $\Aire[km]{2,5} =\pointilles \Aire[m]{}$
+            \end{enumerate}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item $\Aire[dm]{32,5} =\cor{\Aire[dam]{0,00325}}$
+               \item $\Aire{345697,34} =\cor{\Aire[m]{34,569734}}$
+               \item $\Aire[m]{0,003} =\cor{\Aire[mm]{3000}}$
+               \item $\Aire[km]{2,5} =\cor{\Aire[m]{2500000}}$
+            \end{enumerate}
+         \end{Solution}
+         
+         
+         \begin{exercice}[SLF] %3
+            Donner une unité de mesure usuelle pour chacun des objets suivants :
+            \begin{enumerate}
+               \item Longueur d'une piste d'athlétisme : \pointilles
+               \item Surface d'un jardin : \pointilles
+               \item Longueur d'une fourmi : \pointilles
+               \item Surface d'une feuille : \pointilles
+               \item Largeur d'une chambre : \pointilles
+               \item Rayon d'une planète : \pointilles
+            \end{enumerate}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item Longueur d'une piste d'athlétisme : \cor{mètres}.
+               \item Surface d'un jardin : \cor{mètres carrés} ou \cor{ares}.
+               \item Longueur d'une fourmi : \cor{millimètres}.
+               \item Surface d'une feuille : \cor{centimètres carrés}.
+               \item Largeur d'une chambre : \cor{mètres}.
+               \item Rayon d'une planète : \cor{kilomètres}.
+            \end{enumerate}
+         \end{Solution}
+
+         
+         \begin{exercice} %4
+            Sachant que l'unité d'aire est le carreau ($u.a.$), déterminer l'aire de chaque surface suivante.
+            \begin{center}
+               {\psset{unit=0.5}
+               \begin{pspicture}(0,-4.9)(15,10)
+                  \psgrid[subgriddiv=0,gridlabels=0,gridcolor=lightgray](0,-5)(15,10)
+                  \psset{linewidth=0.3mm}
+                  \psframe(1,1)(4,3)
+                  \rput(2.5,2.5){\ding{202}}
+                  \pspolygon(5,0)(11,0)(10,4)(8,4)(5,2)
+                  \rput(8.5,1.5){\ding{205}}
+                  \pspolygon(1,4)(1,9)(5,9)(5,8)(2,8)(2,7)(4,7)(4,6)(2,6)(2,4)
+                  \rput(1.5,6.5){\ding{203}}
+                  \pspolygon(6,7)(12,9)(6,9)
+                  \rput(7.5,8.4){\ding{204}}
+                  \pspolygon(5,4)(5,6)(12,6)(12,8)(14,8)(14,4)(13,3)(14,2)(14,1)(12,1)(11,3)(12,5)(6,5)
+                  \rput(12.5,5.5){\ding{206}}
+                  \psline(3,-2)(1,-2)(1,-4)(2,-4)
+                  \psarc(3,-4){1}{0}{180}
+                  \psline(4,-4)(6,-4)(6,-2)(5,-2)
+                  \psarc(4,-2){1}{0}{180}
+                  \rput(3.5,-2.5){\ding{207}} 
+                  \psline(7,-1)(14,-1)
+                  \psline(7,-4)(14,-4)
+                  \psline(8,-2)(8,-3)
+                  \psline(13,-2)(13,-3)
+                  \psarc(8,-4){1}{90}{180}
+                  \psarc(8,-1){1}{180}{-90}
+                  \psarc(13,-4){1}{0}{90}
+                  \psarc(13,-1){1}{-90}{0}
+                  \pscircle(10,-2.5){1}
+                  \rput(11.5,-2.5){\ding{208}}
+                  \psframe[fillstyle=solid,fillcolor=gray](14,9)(15,10)
+                  \rput(13.25,9.5){$u.a.$}
+               \end{pspicture}}
+            \end{center}
+         \end{exercice}
+         
+         \begin{Solution}
+            On peut par exemple procéder par découpage et recollement pour obtenir des unités entières. \par
+            \begin{enumerate}
+               \item La surface 1 mesure \cor{6 $u.a.$}
+               \item La surface 2 mesure  \cor{10 $u.a.$}
+               \item La surface 3 mesure \cor{6 $u.a.$}
+               \item La surface 4 mesure \cor{19 $u.a.$}
+               \item La surface 5 mesure \cor{22,5 $u.a.$}
+               \item La surface 6 mesure \cor{10 $u.a.$}
+               \item La surface 7 mesure \cor{15 $u.a.$}
+            \end{enumerate}
+         \end{Solution}
+         
+         
+         \begin{exercice}[Dur] %5
+            \begin{enumerate}
+               \item Quelle est l'aire d'un carré de périmètre \Lg{32} ?
+               \item Quel est le périmètre d'un rectangle de largeur \Lg[m]{6} et d'aire \Aire[m]{48} ?
+            \end{enumerate}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item Le périmètre d'un carré vaut $4\times c$, \par
+                  donc $c =\Lg{32}\div4 =\Lg{8}$. \par
+                  L'aire du carré vaut $(\Lg{8})^2 =\cor{\Aire{64}}$.
+               \item L'aire d'un rectangle vaut $L\times\ell$. \par
+                  On a alors $L\times\Lg[m]{6} =\Aire[m]{48}$ soit $L =\dfrac{\Aire[m]{48}}{\Lg[m]{6}} =\Lg[m]{8}$. \par \smallskip
+                  Donc, le périmètre vaut $2\times(\Lg[m]{8}+\Lg[m]{6}) =\cor{\Lg[m]{28}}$.
+            \end{enumerate}
+         \end{Solution}
+         
+         
+         \begin{exercice} %6
+            Calculer l'aire et le périmètre de ces figures. \par
+            {\psset{unit=0.4}
+            \small
+            \begin{pspicture}(-3,0)(13,6)
+               \psframe(1,1)(7,5)
+               \psframe(1,1)(1.4,1.4)
+               \rput(4,1){/\!\!/}
+               \rput(4,5){/\!\!/}
+               \rput(1,3){$\times$}
+               \rput(7,3){$\times$}
+               \rput(4,0.2){\Lg[m]{8}}
+               \rput{90}(0.2,2.7){\Lg[m]{4,5}}
+               \rput(4,3){A}
+
+               \psframe(10,2)(13,5)
+               \psframe(10,2)(10.4,2.4)
+               \rput(11.5,2){$\bullet$}
+               \rput(11.5,5){$\bullet$}
+               \rput(10,3.5){$\bullet$}
+               \rput(13,3.5){$\bullet$}
+               \rput(11.5,1.2){\Lg[mm]{12,3}}
+               \rput(11.5,3.5){B}
+            \end{pspicture} \par
+         
+            \begin{pspicture}(-0.5,0)(17,5)
+               \pspolygon(1,1)(7,1)(2,5)
+               \psframe(2,1)(2.3,1.3)
+               \psline(2,1)(2,5)
+               \rput{-40}(5.2,3.5){\Lg{6,9}}
+               \rput{78}(0.8,3.2){\Lg{4,6}}
+               \rput(3.5,0.1){\Lg{6,6}}
+               \rput{90}(2.5,2.7){\Lg{4,4}}
+               \rput(3.8,2.2){C}
+               
+               \pspolygon(12,1)(17,1)(17,6)
+               \psframe(17,1)(16.7,1.3)
+               \rput(14.5,0.1){\Lg[km]{8,5}}
+               \rput{45}(14.3,4){\Lg[km]{12,5}}
+               \rput(14.5,1){|\!\!|}
+               \rput(17,3.5){=}
+               \rput(15.5,2.5){D}
+            \end{pspicture} \par
+            
+            \begin{pspicture}(-2,0.5)(13,5.5)
+               \pscircle(5,3){2.5}
+               \psline(5,3)(7.5,3)
+               \rput(6.25,2.5){\Lg[dm]{1,5}}
+               \rput(5,3.75){E}
+               \pscircle(12,3){2}
+               \psline(10,3)(14,3)
+               \rput(12,2.5){\Lg[m]{5,6}}
+               \rput(12,3.5){F}
+            \end{pspicture}}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{itemize}
+               \item Figure A : on a un rectangle de côtés \Lg[m]{8} et \Lg[m]{4,5}. \par
+                  $\mathcal{P} =2\times(L+\ell) =2\times(\Lg[m]{8}+\Lg[m]{4,5}) =\cor{\Lg[m]{25}}$. \par
+                  $\mathcal{A} =L\times\ell =\Lg[m]{8}\times\Lg[m]{4,5} =\cor{\Aire[m]{36}}$. \par
+               \item Figure B : on a un carré de côté \Lg[mm]{12,3}. \par
+                  $\mathcal{P} =4\times c =4\times\Lg[mm]{12,3} =\cor{\Lg[mm]{49,2}}$. \par
+                  $\mathcal{A} =c\times c =\Lg[mm]{12,3}\times\Lg[mm]{12,3} =\cor{\Aire[mm]{151,29}}$. \par 
+               \item Figure C : on a un triangle de base \Lg{6,6} et de hauteur associée \Lg{4,4}. \par
+                  $\mathcal{P} =\Lg{6,6}+\Lg{6,9}+\Lg{4,6} =\cor{\Lg{18,1}}$. \par \smallskip
+                  $\mathcal{A} =\dfrac{b\times h}{2} =\dfrac{\Lg{6,6}\times\Lg{4,4}}{2} =\cor{\Aire{14,52}}$. \par \smallskip
+               \item Figure D : on a un triangle de base \Lg[km]{8,5} et de hauteur associée \Lg[km]{8,5}. \par
+                  $\mathcal{P} =2\times\Lg[km]{8,5}+\Lg[km]{12} =\cor{\Lg[km]{29}}$. \par \smallskip
+                  $\mathcal{A} =\dfrac{b\times h}{2}  =\dfrac{\Lg[km]{8,5}\times\Lg[km]{8,5}}{2}=\cor{\Aire[km]{36,125}}$. \par \smallskip
+               \item  Figure E : on a un disque de rayon \Lg[dm]{1,5}. \par
+                  $\mathcal{P} =2\times\pi\times r =2\times\pi\times\Lg[dm]{1,5} \approx\cor{\Lg[dm]{9,42}}$. \par
+                  $\mathcal{A} =\pi\times r^2 =\pi\times(\Lg[dm]{1,5})^2 \approx\cor{\Aire[dm]{7,07}}$. \par
+               \item  Figure F : on a un disque de rayon \Lg[m]{2,8}. \par
+                  $\mathcal{P} =2\times\pi\times r =2\times\pi\times\Lg[m]{2,8} \approx\cor{\Lg[m]{17,59}}$. \par
+                  $\mathcal{A} =\pi\times r^2 =\pi\times(\Lg[m]{2,8})^2 \approx\cor{\Aire[m]{24,63}}$.
+            \end{itemize}     
+         \end{Solution}
+         
+         
+         \begin{exercice}[Dur] %7
+            L'unité d'aire est le carré.
+            \begin{enumerate}
+               \item On peut regrouper les surfaces ci-dessous par deux ou par trois sauf une, laquelle ?
+               \item Calculer alors l'aire de chaque surface.
+            \end{enumerate}
+            \begin{center}
+               {\psset{unit=0.6}
+               \small
+               \begin{pspicture}(0,6)(13,13)
+                  \psgrid[subgriddiv=0,gridlabels=0,gridcolor=lightgray](0,6)(13,13)
+                  \psset{fillstyle=solid,fillcolor=lightgray}
+                  
+                  \pscustom{\psarc(2,11){1}{0}{180} \psarcn(1,10){1}{90}{0} \psarcn(3,10){1}{180}{90}}
+                  \rput(2,11.25){\small A}
+                  \pscustom{\psarc(5,11){1}{0}{180} \psline(4,11)(4,10) \psarc(4,11){1}{270}{0} \psarc(6,11){1}{180}{270} \psline(6,10)(6,11)}
+                  \rput(5,11.5){\small B}
+                  \pscircle(8,11){1}
+                  \rput(8,11){\small C}
+                  \pscustom{\psline(10,11)(10,12)(12,12) \psarcn(12,11){1}{90}{0} \psline(13,11)(11,11)(11,10) \psarc(10,10){1}{0}{90}}
+                  \rput(11.5,11.5){\small D}
+                  
+                  \pscustom{\psarc(1,8){1}{90}{180} \psarcn(0,7){1}{90}{0} \psarc(1,8){1}{270}{0} \psarcn(2,9){1}{270}{180}}
+                  \rput(1,8){\small E}
+                  \pscustom{\psarc(4,8){1}{180}{0} \psarc(5,8){1}{0}{180} \psline(4,8)(3,8)}
+                  \rput(4.5,8){\small F}
+                  \pscustom{\psarcn(7,7){1}{90}{0} \psarcn(9,7){1}{180}{90} \psarcn(9,9){1}{270}{180} \psarcn(7,9){1}{0}{270}}
+                  \rput(8,8){\small G}    
+                  \pscustom{\psarc(11,8){1}{90}{180} \psarcn(10,7){1}{90}{0} \psline(11,7)(11,8)(12,8)(12,7) \psarcn(13,7){1}{180}{90} \psarc(12,8){1}{0}{90} \psline(12,9)(11,9)}
+                  \rput(11.5,8.5){\small H}  
+               \end{pspicture}}
+            \end{center}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item On peut regrouper A et E ; B, C et F ; D et H. \par
+                  \cor{La surface G est seule}.
+               \item 
+                  \begin{itemize}
+                     \item Les figures A et E peuvent être vues comme un rectangle de mesures $2u$ et $u$, leur aire vaut \cor{$2u^2$}.
+                     \item Les figures B, C et F peuvent être recomposées en un disque de rayon $u$, leur aire veut \cor{$\pi u^2$}.
+                     \item Les figures D et H peuvent être recomposées en un rectangle de mesures $3u$ et $u$, leur aire veut \cor{$3u^2$}.
+                     \item La figure G peut être vue comme un carré de côté $2u$ auquel on enlève quatre quarts de disque, soit un disque de rayon $u$. $\mathcal{A} =\cor{4u^2-\pi u^2}$.
+                  \end{itemize}
+            \end{enumerate}
+         \end{Solution}
+         
+         
+         \begin{exercice}[Dur] %8
+            Dans cette figure, on a : \par
+            \begin{minipage}{2cm}
+               $AB =\Lg{9}$ \par
+               $BC =\Lg{21}$ \par
+               $CD =\Lg{11}$ \par
+               $DE =\Lg{9}$ \par
+               $EF =\Lg{11}$ \par
+               $GH =\Lg{7}$
+            \end{minipage}
+            \qquad
+            \begin{minipage}{5cm}
+               {\small
+               \begin{pspicture}(-0.5,-0.4)(3.5,2.5)
+                  \psframe(0,0)(3,2)
+                  \pspolygon(2,0)(3,1)(1,2)(0,0.8)
+                  \rput(-0.2,-0.2){$G$}
+                  \rput(-0.2,2.2){$A$}
+                  \rput(3.2,-0.2){$E$}
+                  \rput(3.2,2.2){$C$}
+                  \rput(2,-0.2){$F$}
+                  \rput(3.2,1){$D$}
+                  \rput(1,2.2){$B$}
+                  \rput(-0.2,0.8){$H$}
+               \end{pspicture}}
+            \end{minipage} \par
+            \begin{enumerate}
+               \item Calculer le périmètre du rectangle $ACEG$.
+               \item Calculer l'aire du quadrilatère $BDFH$.
+            \end{enumerate}
+         \end{exercice}
+         
+         \begin{Solution}
+            \begin{enumerate}
+               \item $\mathcal{P}_{ACEG} =2\times(AC+CE)$. \par
+                  Or, $AC =AB+BC =\Lg{9}+\Lg{21} =\Lg{30}$ ;\par
+                  et $CE =CD+DE =\Lg{11}+\Lg{9} =\Lg{20}$. \par
+                  D'où $\mathcal{P}_{ACEG} =2\times(\Lg{30}+\Lg{20}) =\Lg{100}$. \par
+                  \cor{Le périmètre du rectangle $ACEG$ est de \Lg{100}}.
+               \item Pour calculer l'aire du quadrilatère $BDFH$, on calcule l'aire du rectangle $ACEG$ auquel on soustrait l'aire de chacun des triangles rectangles $ABH$, $BCD$, $DEF$ et $FGH$. \par
+                  $\mathcal{A}_{ACEG} =AC\times CE =\Lg{30}\times\Lg{20} =\Aire{600}$. \par \smallskip
+                  $\mathcal{A}_{ABH} =\dfrac{HA\times AB}{2} =\dfrac{\Lg{13}\times\Lg{9}}{2} =\Aire{58,5}$. \par
+                  $\mathcal{A}_{BCD} =\dfrac{BC\times CD}{2} =\dfrac{\Lg{21}\times\Lg{11}}{2} =\Aire{115,5}$. \par
+                  $\mathcal{A}_{DEF} =\dfrac{DE\times EF}{2} =\dfrac{\Lg{9}\times\Lg{11}}{2} =\Aire{49,5}$. \par
+                  $\mathcal{A}_{FGH} = \dfrac{FG\times GH}{2} =\dfrac{\Lg{19}\times\Lg{7}}{2} =\Aire{66,5}$. \par
+                  $\mathcal{A}_{BDFH} =\Aire{600}-\Aire{58,5}-\Aire{115,5}$ \par
+                  \hspace*{15mm} $-\Aire{49,5}-\Aire{66,5} =\Aire{310}$. \par
+                  \cor{L'aire du quadrilatère $BDFH$ est de \Aire{310}}.
+            \end{enumerate}
+         \end{Solution}
+
+   \end{multicols}
+
+\end{Maquette}
+
+
+%%% Récré %%%
+\begin{Maquette}[Cours]{Theme={Activité récréative},Couleur={IndianRed}}
+    
+   \ARtitre{Tel père, tel fils}
+
+      C’est l’histoire d’un petit rectangle de dimensions $\Lg[mm]{2}\times\Lg[mm]{3}$. \par
+      Chaque jour, il s’agrandit pour devenir un rectangle plus grand : sa nouvelle largeur est égale à son ancienne longueur ; sa nouvelle longueur est égale à la somme de ses deux anciennes dimensions. \par \bigskip
+      
+      {\bf Au bout de combien de jours son aire dépassera-t-elle \Aire[m]{1,5} ?} \par
+
+      \begin{center}
+         \includegraphics[width=15cm]{fantome}   
+      \end{center}
+      
+      \bigskip
+
+      Par groupes, vous effectuerez les recherches, puis rendrez une fiche récapitulative où figureront votre raisonnement, la modélisation et les calculs effectués.
+
+   \vfill \hfill {\it\footnotesize D'après \og La résolution de problèmes mathématiques au collège \fg, MENJS, 2021.}
+
+\end{Maquette}

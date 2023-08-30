@@ -1,0 +1,21 @@
+\thispagestyle{empty}
+\tikzset{fondA/.style=DodgerBlue}
+\tikzset{fondB/.style=DeepPink}
+
+%=======================================
+\begin{tikzpicture}[remember picture,overlay]
+    % fond bicolore
+    \coordinate (cp) at (current page);
+    \coordinate (cpc) at (current page.center);
+    \coordinate (cpe) at ($ (current page.east) + (0.75cm,0cm) $);
+    \coordinate (cpne) at ($ (current page.north east) + (0.75cm,1.4cm) $);
+    \coordinate (cpn) at ($ (current page.north) + (1cm,1.4cm) $);
+    \coordinate (cpnw) at ($ (current page.north west) + (-0.75cm,1.4cm) $);
+    \coordinate (cpw) at ($ (current page.west) + (-0.75cm,0cm) $);
+    \coordinate (cpsw) at ($ (current page.south west) + (-0.75cm,-1.4cm) $);
+    \coordinate (cps) at ($ (current page.south) + (0.75cm,-1.4cm) $);
+    \coordinate (cpse) at ($ (current page.south east) + (0.75cm,-1.4cm) $);
+    \fill[fondA] (cps) .. controls (cpw) and (cpe) .. (cpn) -- (cpnw)  -- (cpsw) -- cycle;
+    \fill[fondB] (cps) .. controls (cpw) and (cpe) .. (cpn) -- (cpne)  -- (cpse) -- cycle;
+
+\end{tikzpicture}

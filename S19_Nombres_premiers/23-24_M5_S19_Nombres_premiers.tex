@@ -1,0 +1,450 @@
+\graphicspath{{../../S19_Nombres_premiers/Images/}}
+
+\themeN
+\chapter{Les nombres premiers} \label{S19}
+
+\programme%
+   {\item Définition d'un nombre premier.
+    \item Liste des nombres premiers inférieurs ou égaux à 30.}
+   {\item Décomposer un nombre entier en produit de facteurs premiers.
+    \item Simplifier une fraction pour la rendre irréductible.}
+
+\vfill
+
+\begin{debat}{Débat : la cryptologie}
+   La {\bf cryptologie} est un art ancien et une science nouvelle : un art ancien car Jules César l’utilisait déjà ; une science nouvelle parce que ce n’est un thème de recherche scientifique que depuis les années 1970. Ce mot vient du grec {\it krypton} - caché et {\it logos} - science et signifie science du secret. Elle englobe la {\bf cryptographie} (l’écriture secrète) et la {\bf cryptanalyse} (l’analyse de cette dernière). Actuellement, on utilise en cryptographie des méthodes basées sur la difficulté de trouver la décomposition d'un nombre en produit de facteurs premiers.
+   \tcblower
+      \begin{pspicture}(0,0.5)(2.5,3)
+         \psset{fillstyle=solid}
+         \psframe[fillcolor=DodgerBlue,framearc=0.2,linecolor=DodgerBlue](0.5,0.5)(2,2)
+         \pscircle[fillcolor=white,linecolor=white](1.25,1.5){0.15}
+         \psline[linewidth=0.15,linecolor=white]{c-c}(1.25,0.9)(1.25,1.35)
+         \psarc[linewidth=0.25](1.25,2){0.5}{0}{180}         
+      \end{pspicture}
+      \begin{pspicture}(0,0.5)(2.5,3)
+         \psset{fillstyle=solid}
+          \psarc[linewidth=0.25](1.2,2.1){0.5}{45}{225} 
+         \psframe[fillcolor=Crimson,framearc=0.2,linecolor=Crimson](0.5,0.5)(2,2)
+          \pscircle[fillcolor=white,linecolor=white](1.25,1.5){0.15}
+         \psline[linewidth=0.15,linecolor=white]{c-c}(1.25,0.9)(1.25,1.35)       
+      \end{pspicture}
+      \begin{pspicture}(0,0.5)(2.5,3)
+         \psset{fillstyle=solid}
+         \psframe[fillcolor=DodgerBlue,framearc=0.2,linecolor=DodgerBlue](0.5,0.5)(2,2)
+         \pscircle[fillcolor=white,linecolor=white](1.25,1.5){0.15}
+         \psline[linewidth=0.15,linecolor=white]{c-c}(1.25,0.9)(1.25,1.35)
+         \psarc[linewidth=0.25](1.25,2){0.5}{0}{180}         
+      \end{pspicture}
+\end{debat}
+
+\hfill \href{https://www.youtube.com/watch?v=4jPtEsDS-qI}{\bf Les nombres premiers}, site Internet {\it Le blob}, épisode de la série {\it Petits contes mathématiques}.
+
+
+%%% Approche %%%
+\begin{Maquette}[Cours]{Theme={Activité d'approche},Couleur={SteelBlue}}
+
+
+   \AAtitre{Le crible d'Ératosthène}
+
+      {\it Objectifs : On considère le tableau des nombres entiers de 1 à 100 ci-dessous.}
+
+      \begin{AActivite}
+
+         On considère le tableau des nombres entiers de 1 à 100 ci-dessous. \par
+         \begin{center}
+            \Erathostene
+         \end{center}
+
+         \AApartie{Recherche des nombres premiers jusqu'à 100}
+            \begin{enumerate}
+               \item Barrer le nombre 1.
+               \item Entourer le nombre 2, premier nombre non barré après 1, puis barrer tous les multiples de 2 plus grands que 2.
+               \item Entourer le nombre 3, premier nombre non barré après 2, puis barrer tous les multiples de 3 plus grands que 3.
+               \item Entourer le nombre 5, premier nombre non barré après 3, puis barrer tous les multiples de 5 plus grands que 5.
+               \item Continuer ainsi de suite jusqu'à 10 puis entourer les nombres restants.
+            \end{enumerate}
+         
+         \AApartie{Conclusion}
+            {\it Ératosthène} ($-276 ; -194$) était un mathématicien, géographe, philosophe, astronome, poète grec. Cet algorithme qu'il a établi porte son nom et permet de trouver tous les {\bf nombres premiers} (des nombres entiers divisibles uniquement par 1 et eux-même) inférieurs à un certain nombre $n$, ici 100. \\ [3mm]
+            Lister tous les nombres entourés dans le tableau : ce sont les nombres premiers inférieurs à 100. \par \medskip
+            \pointilles \par \medskip
+            \pointilles
+      \end{AActivite}
+
+\end{Maquette}
+
+
+%%%Trace écrite %%%
+\begin{Maquette}[Cours]{Theme={Trace écrite},Couleur={0.4[SteelBlue,Black]}}
+
+%%%1
+\section{Nombres premiers}
+
+   \begin{definition*}{}
+      Un entier naturel est un \textbf{nombre premier} s'il admet comme seuls diviseurs 1 et lui-même.
+   \end{definition*}
+
+   \begin{propriete*}{}
+      Les nombres premiers inférieurs à 30 sont 2, 3, 5, 7, 11, 13, 17, 19, 23 et 29.
+   \end{propriete*}
+
+   \begin{exemple*}{}
+      \begin{itemize}
+         \item 23 est un nombre premier car il est dans la liste des nombres premiers (divisible uniquement par 1 et 23).
+         \item 49 est divisible par 1 et par 49, mais aussi par 7. Donc, 49 n'est pas un nombre premier.
+      \end{itemize}
+   \end{exemple*}
+
+
+%%%2
+\section{Décomposition en produit de facteurs premiers}
+
+   \begin{propriete*}{}
+      Tout nombre entier admet une décomposition en produit de facteurs premiers, unique à l'ordre des facteurs près. 
+   \end{propriete*}
+
+   Pour déterminer cette décomposition, on teste si le nombre est divisible par les nombres premiers successifs, éventuellement plusieurs fois. Sur la calculatrice, on peut utiliser la fonction \og {\it Décomp} \fg.
+
+   \begin{exemple*}{}
+      Voilà quelques exemples de représentations de la décomposition de 150 en produit de facteurs premiers. \par \bigskip
+      \quad
+      \begin{minipage}{2.5cm}
+         \Decomposition[TableauVertical]{150}
+      \end{minipage}
+      \quad
+      \begin{minipage}{7.5cm}
+         \Decomposition[Arbre,Entoure]{150}
+         \qquad\;
+         \Decomposition[ArbreComplet,Entoure]{150} 
+      \end{minipage}
+      \quad
+      \begin{minipage}{3cm}
+         $150 =\Decomposition[Longue]{150}$, \par
+         ou $150 =\Decomposition[Exposant]{150}$.
+      \end{minipage}
+   \end{exemple*}
+
+
+%%%3
+\section{Simplifier une fraction}
+
+   \begin{methode*}{Rendre une fraction irréductible}
+      Pour simplifier une fraction, c'est-à-dire écrire une fraction égale mais avec des nombres plus petits au numérateur et au dénominateur, on procède de la façon suivante :
+      \begin{enumerate}
+         \item on décompose le numérateur en produit de facteurs premiers ;
+         \item on décompose le dénominateur en produit de facteurs premiers ;
+         \item on simplifie par tout nombre commun au numérateur et au dénominateur.
+      \end{enumerate}
+      \begin{exmethode}
+         Simplifier la fraction $\dfrac{90}{84}$.
+         \tcblower
+            \Decomposition[TableauVertical]{90} \Decomposition[TableauVertical]{150} \; \parbox{3cm}{$\dfrac{90}{84} =\dfrac{2\times3^2\times5}{2^2\times3\times7}$ \par \medskip
+            $\phantom{\dfrac{90}{84} }=\dfrac{\cancel{2}\times\cancel{3}\times3\times5}{\cancel{2}\times2\times\cancel{3}\times7}$ \par \medskip
+            $\phantom{\dfrac{90}{84} }=\dfrac{3\times5}{2\times7} =\dfrac{15}{14}$}
+      \end{exmethode}
+   \end{methode*}
+
+\end{Maquette}
+
+
+%%% Exercices %%%
+\begin{Maquette}[Fiche,CorrigeFin,Colonnes=2]{}
+
+   \begin{multicols}{2}
+
+      \begin{exercice} %1
+         Les nombres suivants sont-ils des nombres premiers ? Justifier.
+         \begin{colenumerate}[3]
+            \item 0
+            \item 1
+            \item 11
+            \item 23
+            \item 35
+            \item 36 
+            \item 38 
+            \item 51 
+            \item 99
+         \end{colenumerate}
+      \end{exercice}
+      
+      \begin{Solution}
+         \begin{itemize}
+            \item \cor{0 et 1} ne sont pas premiers car un nombre premier est supérieur ou égal à 2. 
+            \item \cor{11 et 23} sont des nombres premiers.
+            \item \cor{35} n'est pas un nombre premier car il est divisible au moins par 5.
+            \item \cor{36 et 38} ne sont pas des nombres premiers car ils sont divisibles au moins par 2.
+            \item \cor{51 et 99} ne sont pas des nombres premiers car ils sont divisibles au moins par 3.
+         \end{itemize}
+      \end{Solution}
+
+
+      \begin{exercice} %2
+         Décomposer les nombres suivants en produits de facteurs premiers.
+         \begin{colenumerate}[3]
+            \item 12
+            \item 18
+            \item 28
+            \item 48
+            \item 210
+            \item 442
+            \item \num{2048}
+            \item \num{30375}
+            \item \num{100000}
+         \end{colenumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{colenumerate}
+            \item $12 =\cor{2^2\times3}$
+            \item $18 =\cor{2\times3^2}$
+            \item $28 =\cor{2^2\times7}$
+            \item $48 =\cor{2^4\times3}$
+            \item $210 =\cor{2\times3\times5\times7}$
+            \item $442 =\cor{2\times13\times17}$
+            \item $\num{2048} =\cor{2^{11}}$
+            \item $\num{30375} =\cor{3^5\times5^3}$
+            \item $\num{100000} =\cor{2^5\times5^5}$
+         \end{colenumerate}
+      \end{Solution}
+
+
+      \begin{exercice} %3
+         Simplification de fractions.
+         \begin{enumerate}
+            \item
+               \begin{enumerate}
+                  \item Décomposer les nombres 90 et 75 en produit de facteurs premiers.
+                  \item Simplifier la fraction $\dfrac{90}{75}$ \smallskip
+                  \item Simplifier la fraction $\dfrac{75}{90}$. Que remarque-t-on ? \smallskip
+               \end{enumerate}
+            \item
+               \begin{enumerate}
+                  \item Décomposer les nombres 242 et 165 en produit de facteurs premiers.
+                  \item Simplifier la fraction $\dfrac{242}{165}$ \smallskip
+                  \item Simplifier la fraction $\dfrac{165}{242}$
+               \end{enumerate}
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item
+               \begin{enumerate}
+                  \item $90 =\cor{2\times3^2\times5}$ et $75 =\cor{3\times5^2}$ \smallskip
+                  \item $\dfrac{90}{75} =\dfrac{2\times\cancel{3}\times3\times\cancel{5}}{\cancel{3}\times\cancel{5}\times5} =\dfrac{2\times3}{5} =\cor{\dfrac65}$ \smallskip
+                  \item $\dfrac{75}{90}$ est l'inverse de $\dfrac{90}{75}$ donc, $\dfrac{75}{90}=\cor{\dfrac56}$ \smallskip
+               \end{enumerate}
+            \setcounter{enumi}{1}
+            \item          
+               \begin{enumerate}
+                  \item $242 =\cor{2\times11^2}$ et $165 =\cor{3\times5\times11}$ \smallskip
+                  \item $\dfrac{242}{165} =\dfrac{2\times\cancel{11}\times11}{3\times5\times\cancel{11}} =\dfrac{2\times11}{3\times5} =\cor{\dfrac{22}{15}}$ \smallskip
+                  \item $\dfrac{165}{242}$ est l'inverse de $\dfrac{242}{165}$ donc, $\dfrac{165}{242} =\cor{\dfrac{15}{22}}$
+               \end{enumerate}
+         \end{enumerate}
+      \end{Solution}
+
+
+      \begin{exercice} %4
+         Simplifier les fractions suivantes : \smallskip
+         \begin{colenumerate}[3]
+            \item $\dfrac{5}{15}$ \medskip
+            \item $\dfrac{12}{23}$ \medskip
+            \item $\dfrac{15}{35}$ 
+            \item $\dfrac{20}{90}$
+            \item $\dfrac{57}{98}$
+            \item $\dfrac{125}{45}$      
+         \end{colenumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{colenumerate}
+            \item $\dfrac{5}{15} =\dfrac{1\times\cancel{5}}{3\times\cancel{5}} =\cor{\dfrac13}$ \medskip
+            \item $\dfrac{12}{23} =\dfrac{2\times2\times3}{23} =\cor{\dfrac{12}{23}}$ \medskip
+            \item $\dfrac{15}{35} =\dfrac{3\times\cancel{5}}{\cancel{5}\times7} =\cor{\dfrac37}$ \medskip
+            \item $\dfrac{20}{90} =\dfrac{2\times\cancel{10}}{9\times\cancel{10}} =\cor{\dfrac29}$ \medskip
+            \item $\dfrac{125}{45} =\dfrac{5\times5\times\cancel{5}}{3\times3\times\cancel{5}} =\cor{\dfrac{25}{9}}$ \medskip
+            \item $\dfrac{57}{98} =\dfrac{3\times19}{2\times7\times7} =\cor{\dfrac{57}{98}}$
+         \end{colenumerate}
+      \end{Solution}
+
+
+      \begin{exercice} %5
+         Voici les diviseurs de trois nombres :
+         \begin{center}
+            {\hautab{1.3}
+            \begin{tabular}{|c|p{5.5cm}|}
+               \hline
+               42 & 1 ; 2 ; 3 ; 6 ; 7 ; 14 ; 21 ; 42 \\
+               \hline
+               56 & 1 ; 2 ; 4 ; 7 ; 8 ; 14 ; 28 ; 56 \\
+               \hline
+               60 & 1 ; 2 ; 3 ; 4 ; 5 ; 6 ; 10 ; 12 ; 15 ; 20 ; 30 ; 60 \\
+               \hline
+            \end{tabular}}
+         \end{center}
+         À l'aide de cette liste, simplifier au maximum chaque fraction. \smallskip
+         \begin{colenumerate}[3]
+            \item $\dfrac{42}{56}$ \medskip
+            \item $\dfrac{56}{60}$ \medskip
+            \item $\dfrac{60}{42}$
+            \item $\dfrac{56}{42}$  
+            \item $\dfrac{60}{56}$
+            \item $\dfrac{42}{60}$
+         \end{colenumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{colenumerate}
+            \item $\dfrac{42}{56} =\dfrac{42\div14}{56\div14} =\cor{\dfrac{3}{4}}$ \medskip
+            \item $\dfrac{56}{60} =\dfrac{56\div4}{60\div4} =\cor{\dfrac{14}{15}}$ \medskip
+            \item $\dfrac{60}{42} =\dfrac{60\div6}{42\div6} =\cor{\dfrac{10}{7}}$
+            \item $\dfrac{56}{42} =\dfrac{56\div14}{42\div14} =\cor{\dfrac{4}{3}}$
+            \item $\dfrac{60}{56} =\dfrac{60\div4}{56\div4} =\cor{\dfrac{15}{14}}$    
+            \item $\dfrac{42}{60} =\dfrac{42\div6}{60\div6} =\cor{\dfrac{7}{10}}$
+         \end{colenumerate}
+      \end{Solution}
+
+
+      \begin{exercice} %6
+         Une conjecture est un résultat que l'on pense vrai, mais qui n'a pas encore été démontré. La conjecture de Goldbach dit que tout nombre pair strictement supérieur à 2 peut s'écrire comme la somme de deux nombres premiers. Par exemple, $8 =3+5$ ; $40 =23+17$.
+         \begin{enumerate}
+            \item Trouver deux telles sommes pour 28.
+            \item Trouver deux telles sommes pour 42.
+            \item Trouver deux telles sommes pour 52.
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item $28 =\cor{5+23 =11+17}$ \smallskip
+            \item $42 =\cor{11+31 =13+29 =19+23}$ \smallskip
+            \item $52 =\cor{11+41 = 23+29}$
+         \end{enumerate}
+      \end{Solution}
+
+
+      \begin{exercice}[Dur] %7
+         On considère un nombre entier naturel $n$. \par
+         On note $S$ la somme de tous ses diviseurs stricts (c'est-à-dire ses diviseurs autres que lui-même). 
+         \begin{itemize}
+            \item $n$ est dit parfait lorsque $S=n$.
+            \item $n$ est dit déficient lorsque $S<n$.
+            \item $n$ est dit abondant lorsque $S>n$.
+         \end{itemize}
+         Par exemple, 8 a comme diviseurs stricts 1; 2 et 4. \par
+         $S =1+2+4 =7< 8$. Donc, 8 est déficient.
+         \begin{enumerate}
+            \item Vérifier que 28 et 496 sont des nombre parfait.
+            \item Trouver le plus petit nombre déficient, le plus petit nombre parfait et le plus petit nombre abondant.
+            \item Quelle est la nature des nombres 7; 11 et 29 ?
+            \item Quelle est la nature d'un nombre premier ?
+         \end{enumerate}
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{enumerate}
+            \item -- Les diviseurs stricts de 28 sont 1, 2, 4, 7 et 14. \par
+               $S =1+2+4+7+14 =28$ donc, \cor{28 est parfait}. \par
+               -- Les diviseurs stricts de 496 sont 1, 2, 4, 8, 16, 31, 62, 124 et 248. Donc, \cor{496 est un nombre parfait} car \par
+               $S =1+2+4+8+16+31+62+124+248 =496$.
+            \item 
+               \begin{itemize}
+                  \item Diviseur de 1 : aucun. $S =0$, \cor{1 est déficient}.
+                  \item Diviseur de 2 : 1. $S =1$ donc, 2 est déficient.
+                  \item Diviseur de 3 : 1. $S =1$ donc, 3 est déficient.
+                  \item Diviseurs de 4 : 1 ; 2. \par
+                     $S =1+2 =3$ donc, 4 est déficient.
+                  \item Diviseur de 5 : 1. $S =1$ donc, 5 est déficient.
+                  \item Diviseurs de 6 : 1 ; 2 ; 3. \par
+                     $S =1+2+3 =6$ donc, \cor{6 est parfait}.
+                  \item Diviseur de 7 : 1. $S =1$ donc, 7 est déficient.
+                  \item Diviseurs de 8 : 1 ; 2 ; 4. \par
+                     $S =1+2+4 =7$ donc, 8 est déficient.
+                  \item Diviseurs de 9 : 1 ; 3. \par
+                     $S =1+3 =4$ donc, 9 est déficient.
+                  \item Diviseurs de 10 : 1 ; 2 ; 5. \par
+                     $S =1+2+5 =8$ donc, 10 est déficient.
+                  \item Diviseur de 11 : 1. $S =1$ donc, 11 est déficient.
+                  \item Diviseurs de 12 : 1 ; 2 ; 3 ; 4 ; 6. \par
+                     $S =1+2+3+4+6 =16$ donc, \cor{12 est abondant}.
+               \end{itemize}
+            \item Le seul diviseur strict de 7, 11 et 29 est 1 donc, \cor{7, 11 et 29 sont déficients}
+            \item Le seul diviseur strict d'un nombre premier est 1 donc, \cor{les nombres premiers sont déficients}.
+         \end{enumerate}
+      \end{Solution}
+
+
+      \begin{exercice}[Tout] %8
+         Les chrysodes traduisent des propriétés relatives à la division euclidienne et aux nombres premiers. Ils s'obtiennent à partir d'un cercle gradué.
+         \begin{center}
+            {\psset{unit=0.85}
+            \begin{pspicture}(-3.5,-3)(3.5,3.3)
+               \pscircle(0,0){3}
+               \multido{\n=90.0+-51.4,\i=0+1}{7}{\psdot(3;\n) \rput(3.3;\n){\i}}
+            \end{pspicture}}
+         \end{center}
+         \begin{enumerate}
+            \item Choisir un nombre de 1 à 6. Le multiplier par 3, puis calculer le reste de la division par 7. Tracer le corde d'extrémités le point correspondant au nombre choisi et le point correspondant au reste obtenu.
+            \item À partir de ce reste, recommencer plusieurs fois. Que constate-ton ?
+         \end{enumerate}  
+      \end{exercice}
+
+      \begin{Solution}
+         \begin{multicols}{2}
+            On remarque que tous les points sont atteints et que la ligne brisée est fermée. \par
+            {\psset{unit=1.1}
+            \begin{pspicture}(-2,-1.5)(2,1.5)
+               \pscircle(0,0){1.5}
+               \multido{\n=90.0+-51.4,\i=0+1}{7}{\psdot(1.5;\n) \rput(1.8;\n){\i}}
+               \pspolygon[linecolor=RoyalBlue](1.5;38.6)(1.5;-61.2)(1.5;-12.8)(1.5;141.4)(1.5;-115.6)(1.5;192.8)
+            \end{pspicture}}
+         \end{multicols}
+      \end{Solution}
+
+   \end{multicols}
+
+\end{Maquette}
+
+
+%%% Récré %%%
+\begin{Maquette}[Cours]{Theme={Activité récréative},Couleur={IndianRed}}
+    
+   \ARtitre{Le Juniper Green}
+
+      Ce jeu mathématique se joue à deux. Il a été créé par {\it Richard Porteous}, enseignant à l'école de Juniper Green.
+      
+      \ARpartie{Règles du jeu}
+         Deux joueurs jouent sur une grille de $N$ nombres suivant les règles suivantes :
+         \begin{itemize}
+            \item Règle 1 : le premier joueur choisit un nombre pair entre 1 et $N$ et le barre sur la grille.
+            \item Règle 2 : chacun son tour, les deux joueurs choisissent un nombre parmi les multiples ou les diviseurs du nombre choisi précédemment par son adversaire et inférieur à $N$ puis le barre.
+            \item Règle 3 : un nombre ne peut être joué qu'une seule fois.
+         \end{itemize}
+         Le joueur qui ne peut plus jouer a perdu.
+         
+      \ARpartie{Avec des grilles de 20 nombres}
+         En binôme, jouer quelques parties sur une grille de 20 nombres. Sous la grille, noter la suite de nombres obtenue.
+         \begin{center}
+            \Erathostene[Lignes=4,Colonnes=5,Hauteur=5mm,CouleurNP=White]
+            \quad
+            \Erathostene[Lignes=4,Colonnes=5,Hauteur=5mm,CouleurNP=White]
+            \quad
+            \Erathostene[Lignes=4,Colonnes=5,Hauteur=5mm,CouleurNP=White]
+            \quad
+            \Erathostene[Lignes=4,Colonnes=5,Hauteur=5mm,CouleurNP=White] \par \bigskip
+            \pointilles \quad \pointilles  \quad \pointilles  \quad \pointilles
+         \end{center}
+         Trouver une suite minimale : \pointilles  \par \medskip
+         Trouver une suite maximale : \pointilles
+            
+      \ARpartie{Avec des grilles de 100 nombres} 
+         Jouer avec ces grilles de 100 nombres.
+         \begin{center}
+            \Erathostene[Hauteur=6mm,CouleurNP=White]
+            \hfill
+            \Erathostene[Hauteur=6mm,CouleurNP=White]
+         \end{center}
+
+
+\end{Maquette}
